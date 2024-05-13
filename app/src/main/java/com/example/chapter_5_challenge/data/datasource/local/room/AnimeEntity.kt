@@ -9,6 +9,10 @@ data class AnimeEntity (
     @PrimaryKey
     @ColumnInfo(name = "id")
     val id: Int,
+    @ColumnInfo(name = "image")
+    val image: String,
     @ColumnInfo(name = "title")
-    val title: String
+    val title: String,
+    @ColumnInfo(name = "desc")
+    val desc: String
 )

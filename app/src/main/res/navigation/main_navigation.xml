@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_favoriteFragment_to_firstFragment"
             app:destination="@id/firstFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_animeFragment"
+            app:destination="@id/animeFragment" />
     </fragment>
 
 </navigation>

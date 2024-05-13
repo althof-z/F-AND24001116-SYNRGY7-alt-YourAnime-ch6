@@ -1,6 +1,7 @@
 package com.example.chapter_5_challenge.data.datasource.remote.retrofit
 
 import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -11,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 private fun provideRetrofit(context: Context, baseUrl: String): Retrofit{
     return Retrofit.Builder()
         .baseUrl(baseUrl)
+        .client(provideOkHttpClient(context))
         .addConverterFactory(GsonConverterFactory.create(Gson()))
         .build()
 }
@@ -18,7 +20,7 @@ private fun provideRetrofit(context: Context, baseUrl: String): Retrofit{
 private fun provideOkHttpClient(context: Context): OkHttpClient {
     return OkHttpClient.Builder()
         .addInterceptor(provideHttpLoggingInterceptor())
-//        .addInterceptor(provideChuckerInterceptor(context))
+        .addInterceptor(provideChuckerInterceptor(context))
         .build()
 }
 
@@ -28,9 +30,9 @@ private fun provideHttpLoggingInterceptor(): Interceptor {
     return httpLoggingInterceptor
 }
 
-//private fun provideChuckerInterceptor(context: Context): Interceptor {
-//    return ChuckerInterceptor.Builder(context).build()
-//}
+private fun provideChuckerInterceptor(context: Context): Interceptor {
+    return ChuckerInterceptor.Builder(context).build()
+}
 
 
 fun provideJikanService(context: Context): JikanService{
