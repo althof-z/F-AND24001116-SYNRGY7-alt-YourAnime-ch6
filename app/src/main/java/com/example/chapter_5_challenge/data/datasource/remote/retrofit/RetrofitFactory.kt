@@ -28,9 +28,9 @@ private fun provideHttpLoggingInterceptor(): Interceptor {
     return httpLoggingInterceptor
 }
 
-private fun provideChuckerInterceptor(context: Context): Interceptor {
-    return ChuckerInterceptor.Builder(context).build()
-}
+//private fun provideChuckerInterceptor(context: Context): Interceptor {
+//    return ChuckerInterceptor.Builder(context).build()
+//}
 
 
 fun provideJikanService(context: Context): JikanService{

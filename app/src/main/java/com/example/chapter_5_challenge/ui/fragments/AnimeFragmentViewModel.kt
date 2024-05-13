@@ -18,7 +18,6 @@ import com.example.chapter_5_challenge.data.datasource.local.room.AppDatabase
 import com.example.chapter_5_challenge.data.datasource.remote.AnimeRemoteDataImpl
 import com.example.chapter_5_challenge.data.datasource.remote.AuthRemoteDataImpl
 import com.example.chapter_5_challenge.data.datasource.remote.retrofit.provideJikanService
-import com.example.chapter_5_challenge.data.datasource.remote.retrofit.provideRetrofit
 import com.example.chapter_5_challenge.data.repository.AnimeRepositoryImpl
 import com.example.chapter_5_challenge.data.repository.AuthRepositoryImpl
 import com.example.chapter_5_challenge.domain.AnimeRepository
