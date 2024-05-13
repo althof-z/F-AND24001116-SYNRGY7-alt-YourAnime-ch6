@@ -12,7 +12,7 @@ class AnimeRepositoryImpl(
     private val remoteData: AnimeRemoteData,
     private val localData: AnimeLocalData,
 ): AnimeRepository {
-    override fun fetchData(): List<Anime> {
+    override suspend fun fetchData(): List<Anime> {
         return remoteData.fetchData()
     }
 

@@ -17,6 +17,8 @@ import com.example.chapter_5_challenge.data.datasource.local.SharedPreferencesFa
 import com.example.chapter_5_challenge.data.datasource.local.room.AppDatabase
 import com.example.chapter_5_challenge.data.datasource.remote.AnimeRemoteDataImpl
 import com.example.chapter_5_challenge.data.datasource.remote.AuthRemoteDataImpl
+import com.example.chapter_5_challenge.data.datasource.remote.retrofit.provideJikanService
+import com.example.chapter_5_challenge.data.datasource.remote.retrofit.provideRetrofit
 import com.example.chapter_5_challenge.data.repository.AnimeRepositoryImpl
 import com.example.chapter_5_challenge.data.repository.AuthRepositoryImpl
 import com.example.chapter_5_challenge.domain.AnimeRepository
@@ -49,7 +51,9 @@ class AnimeFragmentViewModel(
                     val localData: AnimeLocalData = AnimeLocalDataImpl(
                         animeDao = appDatabase.animeDao(),
                     )
-                    val remoteData: AnimeRemoteData = AnimeRemoteDataImpl()
+                    val remoteData: AnimeRemoteData = AnimeRemoteDataImpl(
+                        jikanService = provideJikanService(context)
+                    )
                     val myRepository: AnimeRepository = AnimeRepositoryImpl(
                         remoteData = remoteData,
                         localData = localData,
@@ -71,8 +75,19 @@ class AnimeFragmentViewModel(
     private val _animes: MutableLiveData<List<Anime>> = MutableLiveData()
     val animes: LiveData<List<Anime>> = _animes
 
+    private val _error = MutableLiveData<Throwable>()
+    val error: LiveData<Throwable> = _error
+
     fun retrieveAvailableAnimes(){
-        _animes.value = animeRepository.fetchData()
+        viewModelScope.launch {
+            try{
+                _animes.value = animeRepository.fetchData()
+            }catch (throwable: Throwable){
+                _error.value = throwable
+            }
+
+        }
+
     }
 
 
@@ -92,8 +107,7 @@ class AnimeFragmentViewModel(
     fun logout() {
         authRepository.clearToken()
     }
-    private val _error = MutableLiveData<Throwable>()
-    val error: LiveData<Throwable> = _error
+
 
     private val _animeLocal = MutableLiveData<Anime?>()
     fun loadAnimeFromFavorite(id: Int){

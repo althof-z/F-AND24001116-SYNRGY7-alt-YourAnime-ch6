@@ -4,5 +4,5 @@ import com.example.chapter_5_challenge.ui.fragments.data.Anime
 
 interface AnimeRemoteData {
 
-    fun fetchData(): List<Anime>
+    suspend fun fetchData(): List<Anime>
 }
