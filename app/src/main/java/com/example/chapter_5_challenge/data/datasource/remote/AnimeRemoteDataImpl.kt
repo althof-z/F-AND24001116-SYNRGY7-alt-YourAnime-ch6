@@ -1,8 +1,8 @@
 package com.example.chapter_5_challenge.data.datasource.remote
 
 import com.example.chapter_5_challenge.data.datasource.AnimeRemoteData
+import com.example.chapter_5_challenge.data.datasource.mapper.toAnime
 import com.example.chapter_5_challenge.data.datasource.remote.retrofit.JikanService
-import com.example.chapter_5_challenge.data.datasource.remote.retrofit.model.toAnime
 import com.example.chapter_5_challenge.ui.fragments.data.Anime
 
 class AnimeRemoteDataImpl(

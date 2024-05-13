@@ -14,6 +14,7 @@ import com.example.chapter_5_challenge.data.datasource.AnimeRemoteData
 import com.example.chapter_5_challenge.data.datasource.local.AnimeLocalDataImpl
 import com.example.chapter_5_challenge.data.datasource.local.AuthLocalDataImpl
 import com.example.chapter_5_challenge.data.datasource.local.SharedPreferencesFactory
+import com.example.chapter_5_challenge.data.datasource.local.dataStore
 import com.example.chapter_5_challenge.data.datasource.local.room.AppDatabase
 import com.example.chapter_5_challenge.data.datasource.remote.AnimeRemoteDataImpl
 import com.example.chapter_5_challenge.data.datasource.remote.AuthRemoteDataImpl
@@ -46,7 +47,9 @@ class AnimeFragmentViewModel(
                         context = context,
                         name = AppDatabase.DATABASE_NAME,
                         klass = AppDatabase :: class.java,
-                    ).build()
+                    )
+                        .fallbackToDestructiveMigration()
+                        .build()
                     val localData: AnimeLocalData = AnimeLocalDataImpl(
                         animeDao = appDatabase.animeDao(),
                     )
@@ -59,7 +62,7 @@ class AnimeFragmentViewModel(
                     )
                     val authRepository: AuthRepository = AuthRepositoryImpl(
                     authLocalData = AuthLocalDataImpl(
-                        sharedPreferences = SharedPreferencesFactory().createSharedPreferences(context),
+                        dataStore = context.dataStore,
                     ),
                     authRemoteData = AuthRemoteDataImpl(),
                 )
@@ -74,14 +77,20 @@ class AnimeFragmentViewModel(
     private val _animes: MutableLiveData<List<Anime>> = MutableLiveData()
     val animes: LiveData<List<Anime>> = _animes
 
+    private val _loading: MutableLiveData<Boolean> = MutableLiveData()
+    val loading: LiveData<Boolean> = _loading
+
     private val _error = MutableLiveData<Throwable>()
     val error: LiveData<Throwable> = _error
 
     fun retrieveAvailableAnimes(){
         viewModelScope.launch {
             try{
+                _loading.value = true
                 _animes.value = animeRepository.fetchData()
+                _loading.value = false
             }catch (throwable: Throwable){
+                _loading.value = false
                 _error.value = throwable
             }
 
@@ -92,11 +101,15 @@ class AnimeFragmentViewModel(
 
     fun storeToFavorite(
         title: String,
+        image: String,
         id: Int,
+        desc: String
     ){
       viewModelScope.launch {
           val anime = Anime(
               id = id,
+              image = image,
+              desc = desc,
               title = title,
           )
           animeRepository.storeFavorite(anime)
@@ -104,7 +117,13 @@ class AnimeFragmentViewModel(
     }
 
     fun logout() {
-        authRepository.clearToken()
+        viewModelScope.launch {
+            try {
+                authRepository.clearToken()
+            } catch (throwable: Throwable) {
+                _error.value = throwable
+            }
+        }
     }
 
 

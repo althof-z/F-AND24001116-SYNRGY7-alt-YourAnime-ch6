@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import com.example.chapter_5_challenge.data.datasource.local.AuthLocalDataImpl
 import com.example.chapter_5_challenge.data.datasource.local.SharedPreferencesFactory
+import com.example.chapter_5_challenge.data.datasource.local.dataStore
 import com.example.chapter_5_challenge.data.datasource.remote.AuthRemoteDataImpl
 import com.example.chapter_5_challenge.data.repository.AuthRepositoryImpl
 import com.example.chapter_5_challenge.domain.AuthRepository
@@ -28,7 +29,7 @@ class MainActViewModel(
                 ): T {
                     val authRepository: AuthRepository = AuthRepositoryImpl(
                         authLocalData = AuthLocalDataImpl(
-                            sharedPreferences = SharedPreferencesFactory().createSharedPreferences(context),
+                            dataStore = context.dataStore,
                         ),
                         authRemoteData = AuthRemoteDataImpl(),
                     )
@@ -37,7 +38,4 @@ class MainActViewModel(
             }
     }
 
-    fun checkLogin(): Boolean {
-        return !authRepository.loadToken().isNullOrEmpty()
-    }
 }

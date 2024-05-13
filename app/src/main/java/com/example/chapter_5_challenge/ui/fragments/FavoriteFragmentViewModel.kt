@@ -14,6 +14,7 @@ import com.example.chapter_5_challenge.data.datasource.AnimeRemoteData
 import com.example.chapter_5_challenge.data.datasource.local.AnimeLocalDataImpl
 import com.example.chapter_5_challenge.data.datasource.local.AuthLocalDataImpl
 import com.example.chapter_5_challenge.data.datasource.local.SharedPreferencesFactory
+import com.example.chapter_5_challenge.data.datasource.local.dataStore
 import com.example.chapter_5_challenge.data.datasource.local.room.AppDatabase
 import com.example.chapter_5_challenge.data.datasource.remote.AnimeRemoteDataImpl
 import com.example.chapter_5_challenge.data.datasource.remote.AuthRemoteDataImpl
@@ -46,7 +47,9 @@ class FavoriteFragmentViewModel(
                         context = context,
                         name = AppDatabase.DATABASE_NAME,
                         klass = AppDatabase :: class.java,
-                    ).build()
+                    )
+                        .fallbackToDestructiveMigration()
+                        .build()
                     val localData: AnimeLocalData = AnimeLocalDataImpl(
                         animeDao = appDatabase.animeDao(),
                     )
@@ -59,7 +62,7 @@ class FavoriteFragmentViewModel(
                     )
                     val authRepository: AuthRepository = AuthRepositoryImpl(
                         authLocalData = AuthLocalDataImpl(
-                            sharedPreferences = SharedPreferencesFactory().createSharedPreferences(context),
+                            dataStore = context.dataStore,
                         ),
                         authRemoteData = AuthRemoteDataImpl(),
                     )
@@ -106,7 +109,13 @@ class FavoriteFragmentViewModel(
         }
     }
     fun logout() {
-        authRepository.clearToken()
+        viewModelScope.launch {
+            try {
+                authRepository.clearToken()
+            } catch (throwable: Throwable) {
+                _error.value = throwable
+            }
+        }
     }
 
 

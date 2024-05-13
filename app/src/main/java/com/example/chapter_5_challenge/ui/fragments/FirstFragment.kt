@@ -31,10 +31,18 @@ class  FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (viewModel.checkLogin()) {
-            // User is logged in, load MainFragment
-            findNavController().navigate(R.id.action_firstFragment_to_animeFragment)
+        viewModel.isAuthed.observe(viewLifecycleOwner) { isAuthed ->
+            if (isAuthed) {
+                findNavController().navigate(R.id.action_firstFragment_to_animeFragment)
+            }
         }
+
+        viewModel.checkLogin()
+
+//        if (viewModel.checkLogin()) {
+//            // User is logged in, load MainFragment
+//            findNavController().navigate(R.id.action_firstFragment_to_animeFragment)
+//        }
 
         viewBinding.btnLogin.setOnClickListener {
             it.findNavController().navigate(R.id.action_firstFragment_to_loginFragment)

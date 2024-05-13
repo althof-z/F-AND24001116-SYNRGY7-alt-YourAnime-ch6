@@ -48,6 +48,19 @@ class AnimeFragment : Fragment(), AnimeAdapterListener {
 
         setupAnimeRV()
 
+        viewModel.retrieveAvailableAnimes()
+
+        viewModel.animes.observe(viewLifecycleOwner){ animes ->
+            animeAdapter.submitList(animes)
+        }
+        viewModel.loading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+
         setHasOptionsMenu(true)
 
     }
@@ -57,12 +70,6 @@ class AnimeFragment : Fragment(), AnimeAdapterListener {
             adapter = animeAdapter
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             itemAnimator = DefaultItemAnimator()
-        }
-
-        viewModel.retrieveAvailableAnimes()
-
-        viewModel.animes.observe(viewLifecycleOwner){ animes ->
-            animeAdapter.submitList(animes)
         }
     }
 
@@ -92,7 +99,9 @@ class AnimeFragment : Fragment(), AnimeAdapterListener {
         viewModel.loadAnimeFromFavorite(data.id)
         viewModel.storeToFavorite(
             id = data.id,
-            title = data.title
+            image = data.image,
+            title = data.title,
+            desc = data.desc
         )
         findNavController().navigate(R.id.action_animeFragment_to_favoriteFragment)
     }

@@ -13,15 +13,15 @@ class AuthRepositoryImpl(
         return authRemoteData.login(username, password)
     }
 
-    override fun saveToken(token: String) {
+    override suspend fun saveToken(token: String) {
         authLocalData.saveToken(token)
     }
 
-    override fun loadToken(): String? {
+    override suspend fun loadToken(): String? {
         return authLocalData.loadToken()
     }
 
-    override fun clearToken() {
+    override suspend fun clearToken() {
         authLocalData.clearToken()
     }
 }

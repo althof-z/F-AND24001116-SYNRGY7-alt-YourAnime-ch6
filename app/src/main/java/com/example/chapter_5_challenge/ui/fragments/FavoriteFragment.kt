@@ -82,7 +82,7 @@ class FavoriteFragment : Fragment(), AnimeAdapterListener {
                 true
             }
             R.id.action_favorite ->{
-                findNavController().navigate(R.id.favoriteFragment)
+                findNavController().navigateUp()
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -16,9 +16,6 @@ class AnimeRepositoryImpl(
         return remoteData.fetchData()
     }
 
-    override fun storeData(data: Anime) {
-    }
-
     override suspend fun storeFavorite(anime: Anime) {
         localData.insertAnime(anime.toAnimeEntity())
     }

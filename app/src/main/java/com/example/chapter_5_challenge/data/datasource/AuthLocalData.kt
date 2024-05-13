@@ -1,7 +1,7 @@
 package com.example.chapter_5_challenge.data.datasource
 
 interface AuthLocalData {
-    fun saveToken(token: String)
-    fun loadToken(): String?
-    fun clearToken()
+    suspend fun saveToken(token: String)
+    suspend fun loadToken(): String?
+    suspend fun clearToken()
 }

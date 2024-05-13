@@ -1,25 +1,38 @@
 package com.example.chapter_5_challenge.data.datasource.local
 
 import android.content.SharedPreferences
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import com.example.chapter_5_challenge.data.datasource.AuthLocalData
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.map
 
 class AuthLocalDataImpl(
-    private val sharedPreferences: SharedPreferences,
+    private val dataStore: DataStore<Preferences>,
 ) : AuthLocalData {
 
     companion object {
         const val KEY_TOKEN = "TOKEN"
+        private val AUTH_TOKEN_KEY = stringPreferencesKey(KEY_TOKEN)
     }
 
-    override fun saveToken(token: String) {
-        sharedPreferences.edit().putString(KEY_TOKEN, token).apply()
+    override suspend fun saveToken(token: String) {
+        dataStore.edit { preferences ->
+            preferences[AUTH_TOKEN_KEY] = token
+        }
     }
 
-    override fun loadToken(): String? {
-        return sharedPreferences.getString(KEY_TOKEN, null)
+    override suspend fun loadToken(): String? {
+        return dataStore.data.map { preferences ->
+            preferences[AUTH_TOKEN_KEY]
+        }.firstOrNull()
     }
 
-    override fun clearToken() {
-        sharedPreferences.edit().remove(KEY_TOKEN).apply()
+    override suspend fun clearToken() {
+        dataStore.edit { preferences ->
+            preferences[AUTH_TOKEN_KEY] = ""
+        }
     }
 }

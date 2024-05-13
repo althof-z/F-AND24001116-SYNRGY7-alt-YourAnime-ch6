@@ -6,8 +6,6 @@ interface AnimeRepository {
 
     suspend fun fetchData(): List<Anime>
 
-    fun storeData(data: Anime)
-
     suspend fun storeFavorite(anime: Anime)
 
     suspend fun getAllAnime(): List<Anime>
