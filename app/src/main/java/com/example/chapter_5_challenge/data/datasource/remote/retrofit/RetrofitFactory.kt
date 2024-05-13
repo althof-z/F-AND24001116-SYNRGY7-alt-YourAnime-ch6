@@ -18,7 +18,7 @@ private fun provideRetrofit(context: Context, baseUrl: String): Retrofit{
 private fun provideOkHttpClient(context: Context): OkHttpClient {
     return OkHttpClient.Builder()
         .addInterceptor(provideHttpLoggingInterceptor())
-        .addInterceptor(provideChuckerInterceptor(context))
+//        .addInterceptor(provideChuckerInterceptor(context))
         .build()
 }
 
