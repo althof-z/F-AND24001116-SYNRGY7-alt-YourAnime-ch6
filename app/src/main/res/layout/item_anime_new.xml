@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="16dp"
     android:layout_marginVertical="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,6 +19,7 @@
             android:layout_height="match_parent"
             android:background="@color/black"
             android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -35,25 +36,29 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@tools:sample/lorem/random" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ImageButton
             android:id="@+id/btn_search_anime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="#EEEE00"
+            android:contentDescription="@string/btn_search"
             android:src="@drawable/ic_search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintStart_toEndOf="@+id/iv_anime_cover" />
+            app:layout_constraintStart_toEndOf="@+id/iv_anime_cover"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_fav_anime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="#EEEE00"
+            android:contentDescription="@string/btn_fav"
             android:src="@drawable/ic_fav_border"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/guideline" />
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_anime_desc"

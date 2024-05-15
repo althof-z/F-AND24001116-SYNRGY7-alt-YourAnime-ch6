@@ -14,4 +14,6 @@
     <string name="txt_goto_reg">If You Don\'t Have An Account, Register Here</string>
     <string name="txt_btn_log">LOGIN</string>
     <string name="txt_btn_register">Register</string>
+    <string name="btn_search">Search </string>
+    <string name="btn_fav">Favorite </string>
 </resources>

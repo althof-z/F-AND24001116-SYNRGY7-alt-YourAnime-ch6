@@ -10,8 +10,12 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,10 +45,32 @@ class AnimeFragment : Fragment(), AnimeAdapterListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val menuHost: MenuHost = requireActivity()
+
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.action_logout -> {
+                        viewModel.logout()
+                        activity?.finish()
+                        true
+                    }
+                    R.id.action_favorite ->{
+                        findNavController().navigate(R.id.action_animeFragment_to_favoriteFragment)
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
         viewModel.error.observe(viewLifecycleOwner){error ->
             Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
         }
-
 
         setupAnimeRV()
 
@@ -61,7 +87,7 @@ class AnimeFragment : Fragment(), AnimeAdapterListener {
             }
         }
 
-        setHasOptionsMenu(true)
+
 
     }
 
@@ -71,28 +97,6 @@ class AnimeFragment : Fragment(), AnimeAdapterListener {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             itemAnimator = DefaultItemAnimator()
         }
-    }
-
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu, menu)
-    }
-
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_logout -> {
-                viewModel.logout()
-                activity?.finish()
-                true
-            }
-            R.id.action_favorite ->{
-                findNavController().navigate(R.id.action_animeFragment_to_favoriteFragment)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-
     }
 
     override fun onClickFavButton(data: Anime) {
