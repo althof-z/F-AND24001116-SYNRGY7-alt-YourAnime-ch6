@@ -9,20 +9,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
 import androidx.savedstate.SavedStateRegistryOwner
-import com.example.chapter_6_challenge.data.datasource.AnimeLocalData
-import com.example.chapter_6_challenge.data.datasource.AnimeRemoteData
-import com.example.chapter_6_challenge.data.datasource.local.AnimeLocalDataImpl
-import com.example.chapter_6_challenge.data.datasource.local.AuthLocalDataImpl
-import com.example.chapter_6_challenge.data.datasource.local.dataStore
-import com.example.chapter_6_challenge.data.datasource.local.room.AppDatabase
-import com.example.chapter_6_challenge.data.datasource.remote.AnimeRemoteDataImpl
-import com.example.chapter_6_challenge.data.datasource.remote.AuthRemoteDataImpl
-import com.example.chapter_6_challenge.data.datasource.remote.retrofit.provideJikanService
-import com.example.chapter_6_challenge.data.repository.AnimeRepositoryImpl
-import com.example.chapter_6_challenge.data.repository.AuthRepositoryImpl
-import com.example.chapter_6_challenge.domain.AnimeRepository
-import com.example.chapter_6_challenge.domain.AuthRepository
-import com.example.chapter_6_challenge.ui.fragments.data.Anime
+import com.example.data.datasource.AnimeLocalData
+import com.example.data.datasource.local.AnimeLocalDataImpl
+import com.example.data.datasource.local.AuthLocalDataImpl
+import com.example.data.datasource.local.dataStore
+import com.example.data.datasource.local.room.AppDatabase
+import com.example.data.datasource.remote.AnimeRemoteDataImpl
+import com.example.data.datasource.remote.AuthRemoteDataImpl
+import com.example.data.datasource.remote.retrofit.provideJikanService
+import com.example.data.repository.AnimeRepositoryImpl
+import com.example.data.repository.AuthRepositoryImpl
+import com.example.domain.model.Anime
+import com.example.domain.repository.AnimeRepository
+import com.example.domain.repository.AuthRepository
 import kotlinx.coroutines.launch
 
 class FavoriteFragmentViewModel(
@@ -49,22 +48,25 @@ class FavoriteFragmentViewModel(
                     )
                         .fallbackToDestructiveMigration()
                         .build()
-                    val localData: AnimeLocalData = AnimeLocalDataImpl(
-                        animeDao = appDatabase.animeDao(),
-                    )
-                    val remoteData: AnimeRemoteData = AnimeRemoteDataImpl(
+                    val localData: AnimeLocalData =
+                        AnimeLocalDataImpl(
+                            animeDao = appDatabase.animeDao(),
+                        )
+                    val remoteData: com.example.data.datasource.AnimeRemoteData = AnimeRemoteDataImpl(
                         jikanService = provideJikanService(context)
                     )
-                    val myRepository: AnimeRepository = AnimeRepositoryImpl(
-                        remoteData = remoteData,
-                        localData = localData,
-                    )
-                    val authRepository: AuthRepository = AuthRepositoryImpl(
-                        authLocalData = AuthLocalDataImpl(
-                            dataStore = context.dataStore,
-                        ),
-                        authRemoteData = AuthRemoteDataImpl(),
-                    )
+                    val myRepository: AnimeRepository =
+                        AnimeRepositoryImpl(
+                            remoteData = remoteData,
+                            localData = localData,
+                        )
+                    val authRepository: AuthRepository =
+                        AuthRepositoryImpl(
+                            authLocalData = AuthLocalDataImpl(
+                                dataStore = context.dataStore,
+                            ),
+                            authRemoteData = AuthRemoteDataImpl(),
+                        )
                     return FavoriteFragmentViewModel(
                         animeRepository = myRepository,
                         authRepository = authRepository

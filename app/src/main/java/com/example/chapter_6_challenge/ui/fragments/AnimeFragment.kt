@@ -23,7 +23,7 @@ import com.example.chapter_6_challenge.R
 import com.example.chapter_6_challenge.databinding.FragmentAnimeBinding
 import com.example.chapter_6_challenge.ui.fragments.adapter.AnimeAdapter
 import com.example.chapter_6_challenge.ui.fragments.adapter.AnimeAdapterListener
-import com.example.chapter_6_challenge.ui.fragments.data.Anime
+import com.example.domain.model.Anime
 
 class AnimeFragment : Fragment(), AnimeAdapterListener {
     private lateinit var binding: FragmentAnimeBinding

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.chapter_6_challenge.databinding.ItemAnimeNewBinding
-import com.example.chapter_6_challenge.ui.fragments.data.Anime
+import com.example.domain.model.Anime
 import com.example.chapter_6_challenge.ui.fragments.viewholder.AnimeViewHolder
 
 class AnimeAdapter(private val animeAdapterListener: AnimeAdapterListener)

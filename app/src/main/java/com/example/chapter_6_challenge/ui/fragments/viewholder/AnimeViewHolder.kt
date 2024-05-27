@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.chapter_6_challenge.databinding.ItemAnimeNewBinding
 import com.example.chapter_6_challenge.ui.fragments.adapter.AnimeAdapterListener
-import com.example.chapter_6_challenge.ui.fragments.data.Anime
+import com.example.domain.model.Anime
 
 class AnimeViewHolder (
     private val itemViewBinding: ItemAnimeNewBinding, private val animeAdapterListener: AnimeAdapterListener
