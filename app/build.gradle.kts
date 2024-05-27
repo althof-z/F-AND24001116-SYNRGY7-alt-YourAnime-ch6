@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.chapter_5_challenge"
+    namespace = "com.example.chapter_6_challenge"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.chapter_5_challenge"
+        applicationId = "com.example.chapter_6_challenge"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
