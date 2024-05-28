@@ -3,7 +3,6 @@ package com.example.di
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.data.datasource.AnimeLocalData
 import com.example.data.datasource.AnimeRemoteData
 import com.example.data.datasource.AuthLocalData

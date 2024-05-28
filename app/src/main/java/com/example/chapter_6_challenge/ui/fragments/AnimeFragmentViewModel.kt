@@ -1,24 +1,9 @@
 package com.example.chapter_6_challenge.ui.fragments
 
-import android.content.Context
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.Room
-import androidx.savedstate.SavedStateRegistryOwner
-import com.example.data.datasource.AnimeLocalData
-import com.example.data.datasource.local.AnimeLocalDataImpl
-import com.example.data.datasource.local.AuthLocalDataImpl
-import com.example.data.datasource.local.dataStore
-import com.example.data.datasource.local.room.AppDatabase
-import com.example.data.datasource.remote.AnimeRemoteDataImpl
-import com.example.data.datasource.remote.AuthRemoteDataImpl
-import com.example.data.datasource.remote.retrofit.provideJikanService
-import com.example.data.repository.AnimeRepositoryImpl
-import com.example.data.repository.AuthRepositoryImpl
 import com.example.domain.model.Anime
 import com.example.domain.repository.AnimeRepository
 import com.example.domain.repository.AuthRepository
