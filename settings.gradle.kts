@@ -23,3 +23,4 @@ rootProject.name = "Chapter-6-Challenge"
 include(":app")
 include(":domain")
 include(":data")
+include(":di")

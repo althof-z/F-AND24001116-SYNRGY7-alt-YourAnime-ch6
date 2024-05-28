@@ -10,13 +10,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.chapter_6_challenge.R
 import com.example.chapter_6_challenge.databinding.FragmentFirstBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class  FirstFragment : Fragment() {
 
     private lateinit var viewBinding: FragmentFirstBinding
-    private val viewModel by viewModels<FirstFragViewModel> {
-        FirstFragViewModel.provideFactory(this, requireContext())
-    }
+    private val viewModel by viewModel<FirstFragViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

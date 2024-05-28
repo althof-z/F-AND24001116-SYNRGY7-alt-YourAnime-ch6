@@ -29,54 +29,6 @@ class FavoriteFragmentViewModel(
     private val authRepository: AuthRepository,
 ): ViewModel(){
 
-    companion object {
-        fun provideFactory(
-            owner: SavedStateRegistryOwner,
-            context: Context,
-        ): AbstractSavedStateViewModelFactory =
-            object : AbstractSavedStateViewModelFactory(owner, null) {
-                @Suppress("UNCHECKED_CAST")
-                override fun <T : ViewModel> create(
-                    key: String,
-                    modelClass: Class<T>,
-                    handle: SavedStateHandle,
-                ): T {
-                    val appDatabase = Room.databaseBuilder(
-                        context = context,
-                        name = AppDatabase.DATABASE_NAME,
-                        klass = AppDatabase :: class.java,
-                    )
-                        .fallbackToDestructiveMigration()
-                        .build()
-                    val localData: AnimeLocalData =
-                        AnimeLocalDataImpl(
-                            animeDao = appDatabase.animeDao(),
-                        )
-                    val remoteData: com.example.data.datasource.AnimeRemoteData = AnimeRemoteDataImpl(
-                        jikanService = provideJikanService(context)
-                    )
-                    val myRepository: AnimeRepository =
-                        AnimeRepositoryImpl(
-                            remoteData = remoteData,
-                            localData = localData,
-                        )
-                    val authRepository: AuthRepository =
-                        AuthRepositoryImpl(
-                            authLocalData = AuthLocalDataImpl(
-                                dataStore = context.dataStore,
-                            ),
-                            authRemoteData = AuthRemoteDataImpl(),
-                        )
-                    return FavoriteFragmentViewModel(
-                        animeRepository = myRepository,
-                        authRepository = authRepository
-                    ) as T
-                }
-            }
-
-
-    }
-
     private val _animes: MutableLiveData<List<Anime>> = MutableLiveData()
     val animes: LiveData<List<Anime>> = _animes
 

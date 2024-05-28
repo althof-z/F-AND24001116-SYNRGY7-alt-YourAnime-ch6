@@ -20,29 +20,6 @@ class LoginViewModel(
     private val loginUsesCase: LoginUsesCase
 ) : ViewModel() {
 
-    companion object {
-        fun provideFactory(
-            owner: SavedStateRegistryOwner,
-            context: Context,
-        ): AbstractSavedStateViewModelFactory =
-            object : AbstractSavedStateViewModelFactory(owner, null) {
-                @Suppress("UNCHECKED_CAST")
-                override fun <T : ViewModel> create(
-                    key: String,
-                    modelClass: Class<T>,
-                    handle: SavedStateHandle,
-                ): T {
-                    val authRepository: AuthRepository =
-                        AuthRepositoryImpl(
-                            authLocalData = AuthLocalDataImpl(
-                                dataStore = context.dataStore,
-                            ),
-                            authRemoteData = AuthRemoteDataImpl(),
-                        )
-                    return LoginViewModel(loginUsesCase = LoginUsesCase(authRepository)) as T
-                }
-            }
-    }
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading

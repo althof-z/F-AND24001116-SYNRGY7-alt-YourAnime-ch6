@@ -24,14 +24,13 @@ import com.example.chapter_6_challenge.databinding.FragmentAnimeBinding
 import com.example.chapter_6_challenge.ui.fragments.adapter.AnimeAdapter
 import com.example.chapter_6_challenge.ui.fragments.adapter.AnimeAdapterListener
 import com.example.domain.model.Anime
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AnimeFragment : Fragment(), AnimeAdapterListener {
     private lateinit var binding: FragmentAnimeBinding
     private val animeAdapter = AnimeAdapter(this)
 
-    private val viewModel by viewModels<AnimeFragmentViewModel> {
-        AnimeFragmentViewModel.provideFactory(this, requireContext())
-    }
+    private val viewModel by viewModel<AnimeFragmentViewModel> ()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

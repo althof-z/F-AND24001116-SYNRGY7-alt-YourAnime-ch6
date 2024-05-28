@@ -24,6 +24,7 @@ import com.example.chapter_6_challenge.databinding.FragmentFavoriteBinding
 import com.example.chapter_6_challenge.ui.fragments.adapter.AnimeAdapter
 import com.example.chapter_6_challenge.ui.fragments.adapter.AnimeAdapterListener
 import com.example.domain.model.Anime
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class FavoriteFragment : Fragment(), AnimeAdapterListener {
@@ -31,9 +32,7 @@ class FavoriteFragment : Fragment(), AnimeAdapterListener {
     private lateinit var binding: FragmentFavoriteBinding
     private val animeAdapter = AnimeAdapter(this)
 
-    private val viewModel by viewModels<FavoriteFragmentViewModel> {
-        FavoriteFragmentViewModel.provideFactory(this, requireContext())
-    }
+    private val viewModel by viewModel<FavoriteFragmentViewModel> ()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

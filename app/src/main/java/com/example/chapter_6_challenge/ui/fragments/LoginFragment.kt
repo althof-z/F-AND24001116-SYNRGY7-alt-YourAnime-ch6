@@ -6,18 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.chapter_6_challenge.R
 import com.example.chapter_6_challenge.databinding.FragmentLoginBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class LoginFragment : Fragment() {
 
     private lateinit var viewBinding: FragmentLoginBinding
-    private val viewModel by viewModels<LoginViewModel>{
-        LoginViewModel.provideFactory(this, requireContext())
-    }
+    private val loginViewModel by viewModel<LoginViewModel>()
     
 
     override fun onCreateView(
@@ -43,7 +41,7 @@ class LoginFragment : Fragment() {
             } else {
                 viewBinding.edtEmailLogin.error = null
                 viewBinding.edtPwLogin.error = null
-                viewModel.login(
+                loginViewModel.login(
                     username = viewBinding.edtEmailLogin.text.toString(),
                     password = viewBinding.edtPwLogin.text.toString(),
                 )
@@ -58,14 +56,14 @@ class LoginFragment : Fragment() {
 //            }
 //        }
 //
-        viewModel.success.observe(viewLifecycleOwner) { isSuccess ->
+        loginViewModel.success.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
                 Toast.makeText(context, "Login Berhasil!", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_loginFragment_to_animeFragment)
             }
         }
 //
-        viewModel.error.observe(viewLifecycleOwner) { throwable ->
+        loginViewModel.error.observe(viewLifecycleOwner) { throwable ->
             Toast.makeText(context, throwable.message, Toast.LENGTH_SHORT).show()
         }
 
