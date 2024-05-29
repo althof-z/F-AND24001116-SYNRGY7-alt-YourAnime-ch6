@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private val viewBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
