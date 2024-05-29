@@ -30,6 +30,9 @@
             app:destination="@id/firstFragment"
             app:popUpTo="@id/animeFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_animeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -51,6 +54,14 @@
         <action
             android:id="@+id/action_favoriteFragment_to_animeFragment"
             app:destination="@id/animeFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.chapter_6_challenge.ui.fragments.ProfileFragment"
+        android:label="User Profile"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>

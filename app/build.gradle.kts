@@ -44,9 +44,9 @@ android {
 dependencies {
 
     implementation(project(":domain"))
-    implementation(project(":data"))
     implementation(project(":di"))
 
+    implementation (libs.filepicker)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.coil)

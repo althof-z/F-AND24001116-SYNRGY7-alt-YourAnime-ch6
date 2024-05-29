@@ -16,4 +16,6 @@
     <string name="txt_btn_register">Register</string>
     <string name="btn_search">Search </string>
     <string name="btn_fav">Favorite </string>
+    <string name="profile_pic">Profile Pic</string>
+    <string name="add_image">Add Image</string>
 </resources>

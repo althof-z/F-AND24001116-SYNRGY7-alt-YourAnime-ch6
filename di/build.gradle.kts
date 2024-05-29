@@ -44,6 +44,10 @@ dependencies {
     implementation(libs.koin.android)
 
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.monitor)
+    implementation(libs.androidx.junit.ktx)
+    androidTestImplementation("junit:junit:4.12")
+    androidTestImplementation("junit:junit:4.12")
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
 }
