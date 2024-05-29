@@ -9,7 +9,7 @@ import com.example.chapter_6_challenge.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-
+//
     private val viewBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
