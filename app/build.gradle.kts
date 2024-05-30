@@ -76,4 +76,7 @@ dependencies {
 
     debugImplementation(libs.library)
     releaseImplementation(libs.library.no.op)
+
+    implementation(libs.androidx.work.runtime.ktx)
+
 }
