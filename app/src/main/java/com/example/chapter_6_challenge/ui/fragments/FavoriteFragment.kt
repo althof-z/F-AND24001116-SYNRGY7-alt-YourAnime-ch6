@@ -62,6 +62,10 @@ class FavoriteFragment : Fragment(), AnimeAdapterListener {
                         findNavController().navigateUp()
                         true
                     }
+                    R.id.action_account ->{
+                        findNavController().navigate(R.id.action_favoriteFragment_to_profileFragment)
+                        true
+                    }
                     else -> false
                 }
             }
