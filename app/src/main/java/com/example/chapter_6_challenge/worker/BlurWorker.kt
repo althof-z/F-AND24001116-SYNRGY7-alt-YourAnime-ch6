@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
+import com.example.chapter_6_challenge.ui.fragments.ProfileFragment.Companion.KEY_IMAGE_URI
 
 
 class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {

@@ -8,7 +8,7 @@ import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
-import com.anangkur.synrgychapter3.ui.activity.blur.BlurActivity.Companion.KEY_IMAGE_URI
+import com.example.chapter_6_challenge.ui.fragments.ProfileFragment.Companion.KEY_IMAGE_URI
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

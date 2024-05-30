@@ -1,33 +1,31 @@
 package com.example.chapter_6_challenge.ui.fragments
 
-import android.Manifest
 import android.app.Activity
-import android.content.pm.PackageManager
-import android.net.Uri
+import android.content.Intent
 import android.os.Bundle
-import android.os.Environment
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.work.WorkInfo
 import coil.load
 import com.example.chapter_6_challenge.R
-import com.example.chapter_6_challenge.databinding.FragmentAnimeBinding
 import com.example.chapter_6_challenge.databinding.FragmentProfileBinding
 import com.nareshchocha.filepickerlibrary.models.PickMediaConfig
 import com.nareshchocha.filepickerlibrary.models.PickMediaType
 import com.nareshchocha.filepickerlibrary.ui.FilePicker
-import java.io.File
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
 
+    companion object {
+        const val KEY_IMAGE_URI = "KEY_IMAGE_URI"
+    }
+    private val viewModel: ProfileFragmentViewModel  by viewModel<ProfileFragmentViewModel> ()
     private lateinit var binding: FragmentProfileBinding
 
     private val filePickerResult =
@@ -51,7 +49,105 @@ class ProfileFragment : Fragment() {
         binding.btnChoose.setOnClickListener {
             chooseImageDialog()
         }
+
+        binding.goButton.setOnClickListener { viewModel.applyBlur(blurLevel) }
+
+        // Setup view output image file button
+        binding.seeFileButton.setOnClickListener {
+            viewModel.outputUri?.let { currentUri ->
+                val actionView = Intent(Intent.ACTION_VIEW, currentUri)
+                actionView.resolveActivity(requireContext().packageManager)?.run {
+                    startActivity(actionView)
+                }
+            }
+        }
+
+        // Hookup the Cancel button
+        binding.cancelButton.setOnClickListener { viewModel.cancelWork() }
+
+        viewModel.outputWorkInfos.observe(this, workInfosObserver())
     }
+
+    private fun workInfosObserver(): Observer<List<WorkInfo>> {
+        return Observer { listOfWorkInfo ->
+
+            // Note that these next few lines grab a single WorkInfo if it exists
+            // This code could be in a Transformation in the ViewModel; they are included here
+            // so that the entire process of displaying a WorkInfo is in one location.
+
+            // If there are no matching work info, do nothing
+            if (listOfWorkInfo.isNullOrEmpty()) {
+                return@Observer
+            }
+
+            // We only care about the one output status.
+            // Every continuation has only one worker tagged TAG_OUTPUT
+            val workInfo = listOfWorkInfo[0]
+
+            if (workInfo.state.isFinished) {
+                showWorkFinished()
+
+                // Normally this processing, which is not directly related to drawing views on
+                // screen would be in the ViewModel. For simplicity we are keeping it here.
+                val outputImageUri = workInfo.outputData.getString(KEY_IMAGE_URI)
+
+                // If there is an output file show "See File" button
+                if (!outputImageUri.isNullOrEmpty()) {
+                    viewModel.setOutputUri(outputImageUri)
+                    binding.seeFileButton.visibility = View.VISIBLE
+                    binding.ivImage.load(outputImageUri)
+                }
+            } else {
+                showWorkInProgress()
+            }
+        }
+    }
+
+    /**
+     * Shows and hides views for when the Activity is processing an image
+     */
+    private fun showWorkInProgress() {
+        with(binding) {
+            progressBar.visibility = View.VISIBLE
+            cancelButton.visibility = View.VISIBLE
+            goButton.visibility = View.GONE
+            seeFileButton.visibility = View.GONE
+        }
+    }
+
+    /**
+     * Shows and hides views for when the Activity is done processing an image
+     */
+    private fun showWorkFinished() {
+        with(binding) {
+            progressBar.visibility = View.GONE
+            cancelButton.visibility = View.GONE
+            goButton.visibility = View.VISIBLE
+        }
+    }
+
+    private val blurLevel: Int
+        get() =
+            when (binding.radioBlurGroup.checkedRadioButtonId) {
+                R.id.radio_blur_lv_1 -> 1
+                R.id.radio_blur_lv_2 -> 2
+                R.id.radio_blur_lv_3 -> 3
+                else -> 1
+            }
+
+
+    private fun handleFilePickerResult(result: ActivityResult) {
+        if (result.resultCode == Activity.RESULT_OK) {
+            result.data?.data?.let {
+                binding.ivImage.load(it)
+                viewModel.setImageUri(it)
+            }
+        }
+    }
+
+
+
+
 
     private fun chooseImageDialog() {
         AlertDialog.Builder(requireContext())
@@ -79,9 +175,4 @@ class ProfileFragment : Fragment() {
         )
     }
 
-    private fun handleFilePickerResult(result: ActivityResult) {
-        if (result.resultCode == Activity.RESULT_OK) {
-            binding.ivImage.load(result.data?.data)
-        }
-    }
 }
