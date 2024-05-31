@@ -2,6 +2,7 @@
 agp = "8.3.1"
 datastorePreferences = "1.1.1"
 filepicker = "0.2.5"
+junitJunit = "4.12"
 koinBom = "3.5.6"
 kotlin = "1.9.23"
 coreKtx = "1.13.0"
@@ -42,6 +43,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+junit-v412 = { module = "junit:junit", version.ref = "junitJunit" }
 koin-android = { module = "io.insert-koin:koin-android" }
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koinBom" }
 library = { module = "com.github.chuckerteam.chucker:library", version.ref = "library" }

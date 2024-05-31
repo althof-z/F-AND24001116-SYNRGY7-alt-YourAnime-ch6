@@ -41,10 +41,10 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.monitor)
     implementation(libs.androidx.junit.ktx)
-    androidTestImplementation("junit:junit:4.12")
+    androidTestImplementation(libs.junit)
     ksp(libs.androidx.room.compiler)
 
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation(libs.androidx.datastore.preferences)
 
     implementation(libs.gson)
 
@@ -54,6 +54,6 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
 
-    debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
-    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
+    debugImplementation(libs.library)
+    releaseImplementation(libs.library.no.op)
 }
