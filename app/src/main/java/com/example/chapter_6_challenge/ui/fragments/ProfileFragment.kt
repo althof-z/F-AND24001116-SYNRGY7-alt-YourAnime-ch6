@@ -65,7 +65,7 @@ class ProfileFragment : Fragment() {
         // Hookup the Cancel button
         binding.cancelButton.setOnClickListener { viewModel.cancelWork() }
 
-        viewModel.outputWorkInfos.observe(this, workInfosObserver())
+        viewModel.outputWorkInfos.observe(viewLifecycleOwner, workInfosObserver())
     }
 
     private fun workInfosObserver(): Observer<List<WorkInfo>> {
@@ -76,7 +76,7 @@ class ProfileFragment : Fragment() {
             // so that the entire process of displaying a WorkInfo is in one location.
 
             // If there are no matching work info, do nothing
-            if (listOfWorkInfo.isNullOrEmpty()) {
+            if (listOfWorkInfo.isEmpty()) {
                 return@Observer
             }
 

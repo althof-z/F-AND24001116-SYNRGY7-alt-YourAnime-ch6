@@ -39,6 +39,9 @@ dependencies {
 
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.monitor)
+    implementation(libs.androidx.junit.ktx)
+    androidTestImplementation("junit:junit:4.12")
     ksp(libs.androidx.room.compiler)
 
     implementation("androidx.datastore:datastore-preferences:1.1.1")
