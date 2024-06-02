@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Chapter-6-Challenge"
+rootProject.name = "Chapter-7-Challenge"
 include(":app")
 include(":domain")
 include(":data")
