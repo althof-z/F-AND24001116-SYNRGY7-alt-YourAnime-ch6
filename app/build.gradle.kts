@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.chapter_7_challenge"
+    namespace = "com.example.animevault"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.chapter_7_challenge"
+        applicationId = "com.example.animevault"
         minSdk = 29
         targetSdk = 34
         versionCode = 1

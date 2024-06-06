@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Chapter-7-Challenge"
+rootProject.name = "AnimeVault"
 include(":app")
 include(":domain")
 include(":data")
