@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/firstFragment"
-        android:name="com.example.chapter_7_challenge.ui.fragments.FirstFragment"
+        android:name="com.example.animevault.ui.fragments.FirstFragment"
         android:label="Your Anime List"
         tools:layout="@layout/fragment_first">
         <action
@@ -16,10 +16,13 @@
         <action
             android:id="@+id/action_firstFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_authFragment"
+            app:destination="@id/authFragment" />
     </fragment>
     <fragment
         android:id="@+id/animeFragment"
-        android:name="com.example.chapter_7_challenge.ui.fragments.AnimeFragment"
+        android:name="com.example.animevault.ui.fragments.AnimeFragment"
         android:label="Best Animes "
         tools:layout="@layout/fragment_anime" >
         <action
@@ -36,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.chapter_7_challenge.ui.fragments.LoginFragment"
+        android:name="com.example.animevault.ui.fragments.LoginFragment"
         android:label="Log In"
         tools:layout="@layout/fragment_login" >
         <action
@@ -45,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.chapter_7_challenge.ui.fragments.FavoriteFragment"
+        android:name="com.example.animevault.ui.fragments.FavoriteFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorite" >
         <action
@@ -60,8 +63,13 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.chapter_7_challenge.ui.fragments.ProfileFragment"
+        android:name="com.example.animevault.ui.fragments.ProfileFragment"
         android:label="User Profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.example.animevault.ui.fragments.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" />
 
 </navigation>
