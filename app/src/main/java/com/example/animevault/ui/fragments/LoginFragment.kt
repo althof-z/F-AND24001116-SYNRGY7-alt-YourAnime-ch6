@@ -59,7 +59,7 @@ class LoginFragment : Fragment() {
         loginViewModel.success.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
                 Toast.makeText(context, "Login Berhasil!", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_loginFragment_to_animeFragment)
+                findNavController().navigate(R.id.action_loginFragment_to_authFragment)
             }
         }
 //

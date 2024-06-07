@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_loginFragment_to_animeFragment"
             app:destination="@id/animeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_authFragment"
+            app:destination="@id/authFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
