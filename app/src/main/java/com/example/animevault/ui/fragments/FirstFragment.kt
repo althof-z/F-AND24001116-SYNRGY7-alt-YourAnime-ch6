@@ -37,11 +37,6 @@ class  FirstFragment : Fragment() {
 
         viewModel.checkLogin()
 
-//        if (viewModel.checkLogin()) {
-//            // User is logged in, load MainFragment
-//            findNavController().navigate(R.id.action_firstFragment_to_animeFragment)
-//        }
-
         viewBinding.btnLogin.setOnClickListener {
             it.findNavController().navigate(R.id.action_firstFragment_to_loginFragment)
         }

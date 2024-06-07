@@ -6,9 +6,13 @@
         <item name="android:textAlignment">center</item>
     </style>
 
-    <style name="RoundedSquare">
+    <style name="RoundedBottom">
         <item name="cornerSizeBottomLeft">10%</item>
         <item name="cornerSizeBottomRight">10%</item>
+    </style>
+
+    <style name="RoundedCorner">
+        <item name="cornerSize">10%</item>
     </style>
 
     <style name="Circular">

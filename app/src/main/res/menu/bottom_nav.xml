@@ -7,7 +7,12 @@
         android:title="home" />
     <item
         android:id="@+id/nav_list"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_list"
         android:enabled="true"
         android:title="list" />
+    <item
+        android:id="@+id/nav_favorite"
+        android:icon="@drawable/ic_favorite"
+        android:enabled="true"
+        android:title="favorite" />
 </menu>

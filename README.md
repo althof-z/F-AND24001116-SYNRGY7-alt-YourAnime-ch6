@@ -2,12 +2,11 @@
  [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](http://developer.android.com/index.html) [![Kotlin](https://img.shields.io/badge/kotlin-1.9.23-orange.svg)](http://kotlinlang.org) [![Gradle](https://img.shields.io/badge/gradle-8.4-%2366DCB8.svg)](https://developer.android.com/studio/releases/gradle-plugin)
 
 
-AnimeVault is an Android application designed to provide users with an exceptional experience in searching and watching anime. With a focus on quality and convenience, AnimeVault offers features that allow users to easily search and discover their favorite anime.
+AnimeVault is an Android application designed to provide users with an exceptional experience in finding the best anime. With a focus on quality and convenience, AnimeVault offers features that allow users to easily search and discover their favorite anime.
 
 ## Main Features
 
 - **Search and Discover Anime**: Easily find and discover your favorite anime.
-- **Personalized Recommendations**: Get anime recommendations based on your preferences and viewing history.
 - **Favorites Management**: Save and manage your favorite anime in a dedicated list.
 - **Browser Integration**: Instantly search for your favorite anime in the browser.
 
@@ -24,7 +23,7 @@ AnimeVault is an Android application designed to provide users with an exception
 - `di/` - Contains the source code for dependency injection.
 - `domain/` - Contains the source code for business logic.
 
-## Dependencies
+## Build With
 
 - [Android Studio](https://developer.android.com/studio) (Jellyfish | 2023.3.1).
 - [Kotlin](https://kotlinlang.org/) (1.9.23).

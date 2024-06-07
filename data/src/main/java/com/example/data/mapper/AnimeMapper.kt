@@ -31,6 +31,6 @@ fun AnimeResponse.toAnime(): Anime {
         id = malId,
         image = images.jpg.image_url,
         title = titleEnglish,
-        desc = synopsis
+        desc = "$year • $episodes episodes"
     )
 }

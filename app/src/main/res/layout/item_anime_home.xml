@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    android:layout_marginVertical="4dp"
+    android:background="@android:color/transparent"
+    app:cardBackgroundColor="@android:color/transparent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="320dp"
+        android:padding="10dp"
+        android:background="@android:color/transparent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_anime_cover_home"
+            android:layout_width="150dp"
+            android:layout_height="220dp"
+            android:background="@color/black"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/RoundedCorner" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_anime_title"
+            tools:text="@tools:sample/lorem/random"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/iv_anime_cover_home"
+            app:layout_constraintStart_toStartOf="@+id/iv_anime_cover_home"
+            app:layout_constraintTop_toBottomOf="@+id/iv_anime_cover_home" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_anime_desc"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:maxLines="7"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_anime_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_anime_title"
+            tools:text="@tools:sample/lorem" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -40,11 +40,10 @@ class AuthFragment : Fragment() {
         binding.bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    setFragment(AnimeFragment())
+                    setFragment(HomeFragment())
                     true
                 }
                 R.id.nav_list -> {
-                    Log.e("NAVBOTTOM", "masuk list")
                     setFragment(FavoriteFragment())
                     true
                 }
