@@ -4,7 +4,7 @@
 
 AnimeVault is an Android application designed to provide users with an exceptional experience in finding the best anime. With a focus on quality and convenience, AnimeVault offers features that allow users to easily search and discover their favorite anime.
 
-![image](https://github.com/althof-z/StaySwiftBookingApp/blob/main/assets/app.png)
+![image](https://github.com/althof-z/AnimeVault/blob/master/assets/app.png)
 
 ## Main Features
 
