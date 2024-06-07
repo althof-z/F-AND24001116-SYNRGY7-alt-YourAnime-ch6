@@ -27,7 +27,6 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_anime_title"
-            tools:text="@tools:sample/lorem/random"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -35,9 +34,11 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"
+            app:fontFamily="@font/galanogroresque_altsemibold"
             app:layout_constraintEnd_toEndOf="@+id/iv_anime_cover_home"
             app:layout_constraintStart_toStartOf="@+id/iv_anime_cover_home"
-            app:layout_constraintTop_toBottomOf="@+id/iv_anime_cover_home" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_anime_cover_home"
+            tools:text="@tools:sample/lorem/random" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_anime_desc"
@@ -47,6 +48,7 @@
             android:maxLines="7"
             android:textColor="@color/white"
             android:textSize="10sp"
+            app:fontFamily="@font/galanogrotesque_altregular"
             app:layout_constraintStart_toStartOf="@+id/tv_anime_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_anime_title"
             tools:text="@tools:sample/lorem" />

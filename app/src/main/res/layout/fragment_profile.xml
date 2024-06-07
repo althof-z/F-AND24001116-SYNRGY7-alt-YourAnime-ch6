@@ -6,113 +6,164 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ProfileFragment">
 
+    <View
+        android:id="@+id/borderedTextView3"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_textview"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/iv_Image"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="@+id/iv_Image"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Choose"
+        app:layout_constraintVertical_bias="0.403" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/galano_grotesque_altlight"
+        android:hint="Name"
+        android:inputType="text"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintEnd_toEndOf="@+id/borderedTextView3"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/borderedTextView3"
+        app:layout_constraintStart_toStartOf="@+id/borderedTextView3"
+        app:layout_constraintTop_toTopOf="@+id/borderedTextView3"
+        app:srcCompat="@drawable/ic_account" />
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_Image"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_margin="50dp"
         android:contentDescription="@string/profile_pic"
         android:scaleType="centerCrop"
-        android:layout_margin="50dp"
-        app:shapeAppearanceOverlay="@style/Circular"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/Circular" />
 
     <Button
         android:id="@+id/btn_Choose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/galanogroresque_altsemibold"
+        android:padding="12dp"
         android:text="@string/add_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_Image" />
 
-    <TextView
-        android:id="@+id/filters_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Blur"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Choose"/>
+    <ImageButton
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/btn_bg_circular"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
-    <RadioGroup
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/radio_blur_group"
-        android:checkedButton="@+id/radio_blur_lv_1"
-        app:layout_constraintTop_toBottomOf="@+id/filters_title">
-        <RadioButton android:id="@+id/radio_blur_lv_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Level 1" />
-        <RadioButton android:id="@+id/radio_blur_lv_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Level 2" />
-        <RadioButton android:id="@+id/radio_blur_lv_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Level 3" />
-    </RadioGroup>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/radio_blur_group"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/cancel_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cancel"
-                android:visibility="gone"
-                />
-
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminate="true"
-                android:visibility="gone"
-                android:layout_gravity="center_horizontal"
-                />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/go_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Go"
-            android:layout_marginHorizontal="12dp"
-            />
-
-        <Button
-            android:id="@+id/see_file_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="See File"
-            android:visibility="gone"
-            tools:visibility="visible" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/filters_title"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Blur"-->
+    <!--        android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/btn_Choose"/>-->
 
 
+    <!--    <RadioGroup-->
+    <!--        android:layout_width="fill_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:id="@+id/radio_blur_group"-->
+    <!--        android:checkedButton="@+id/radio_blur_lv_1"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/filters_title">-->
+    <!--        <RadioButton android:id="@+id/radio_blur_lv_1"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Level 1" />-->
+    <!--        <RadioButton android:id="@+id/radio_blur_lv_2"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Level 2" />-->
+    <!--        <RadioButton android:id="@+id/radio_blur_lv_3"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Level 3" />-->
+    <!--    </RadioGroup>-->
 
-    </LinearLayout>
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="16dp"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:gravity="center"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/radio_blur_group"-->
+    <!--        android:orientation="horizontal">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:orientation="horizontal">-->
+    <!--            <Button-->
+    <!--                android:id="@+id/cancel_button"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:text="Cancel"-->
+    <!--                android:visibility="gone"-->
+    <!--                />-->
+
+    <!--            <ProgressBar-->
+    <!--                android:id="@+id/progress_bar"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:indeterminate="true"-->
+    <!--                android:visibility="gone"-->
+    <!--                android:layout_gravity="center_horizontal"-->
+    <!--                />-->
+    <!--        </LinearLayout>-->
+
+    <!--        <Button-->
+    <!--            android:id="@+id/go_button"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Go"-->
+    <!--            android:layout_marginHorizontal="12dp"-->
+    <!--            />-->
+
+    <!--        <Button-->
+    <!--            android:id="@+id/see_file_button"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="See File"-->
+    <!--            android:visibility="gone"-->
+    <!--            tools:visibility="visible" />-->
 
 
+    <!--    </LinearLayout>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

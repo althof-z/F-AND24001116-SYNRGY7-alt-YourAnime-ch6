@@ -2,7 +2,7 @@
     <string name="app_name">AnimeVault</string>
     <string name="hello_blank_fragment">Hello Anime Genre HERE</string>
     <string name="poster">Poster</string>
-    <string name="main_title">Anime List</string>
+    <string name="main_title">AnimeVault</string>
     <string name="main_desc">Find Your Favorite Anime to Watch, We\'ll Give You The Best Recommendation</string>
     <string name="btn_main_text">Go</string>
     <string name="layout">layout</string>
@@ -18,4 +18,5 @@
     <string name="btn_fav">Favorite </string>
     <string name="profile_pic">Profile Pic</string>
     <string name="add_image">Change Picture</string>
+    <string name="reg">Register</string>
 </resources>
