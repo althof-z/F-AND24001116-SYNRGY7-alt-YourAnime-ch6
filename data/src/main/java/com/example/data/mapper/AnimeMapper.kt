@@ -3,8 +3,9 @@ package com.example.data.mapper
 import com.example.data.datasource.local.room.AnimeEntity
 import com.example.data.datasource.remote.retrofit.model.anime.AnimeResponse
 import com.example.domain.model.Anime
+import com.example.domain.model.AnimeHome
 
-fun Anime.toAnimeEntity(): AnimeEntity {
+fun AnimeHome.toAnimeEntity(): AnimeEntity {
     return AnimeEntity(
         id = id,
         image = image,
@@ -13,8 +14,8 @@ fun Anime.toAnimeEntity(): AnimeEntity {
     )
 }
 
-fun AnimeEntity.toAnime(): Anime {
-    return Anime(
+fun AnimeEntity.toAnimeHome(): AnimeHome {
+    return AnimeHome(
         id = id,
         image = image,
         title = title,
@@ -22,15 +23,27 @@ fun AnimeEntity.toAnime(): Anime {
     )
 }
 
-fun List<AnimeEntity>.toAnimes(): List<Anime>{
-    return map { animeEntity -> animeEntity.toAnime() }
+fun List<AnimeEntity>.toAnimes(): List<AnimeHome>{
+    return map { animeEntity -> animeEntity.toAnimeHome() }
 }
 
-fun AnimeResponse.toAnime(): Anime {
-    return Anime(
+fun AnimeResponse.toAnimeHome(): AnimeHome {
+    return AnimeHome(
         id = malId,
         image = images.jpg.image_url,
         title = titleEnglish,
         desc = "$year • $episodes episodes"
+    )
+}
+
+fun AnimeResponse.toAnime(): Anime{
+    return Anime(
+        id = malId,
+        image = images.jpg.image_url,
+        title = titleEnglish,
+        synopsis = synopsis,
+        year = year,
+        episode = "$episodes episodes",
+        rate = score
     )
 }

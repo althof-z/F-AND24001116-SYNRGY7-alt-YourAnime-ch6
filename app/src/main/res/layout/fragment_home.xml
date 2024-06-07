@@ -48,14 +48,13 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_welcome_user"
-            tools:layout_editor_absoluteX="6dp">
+            app:layout_constraintTop_toBottomOf="@id/tv_welcome_user">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_highlight_anime"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@color/material_dynamic_neutral20"
+                android:background="@color/white"
                 android:contentDescription="@string/profile_pic"
                 android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="3:2"
@@ -99,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="2009 • 64 • Episodes 17+"
+                    android:text="2009 • 64 Episodes • 17+"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/tv_highlight_title"
@@ -108,7 +107,6 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

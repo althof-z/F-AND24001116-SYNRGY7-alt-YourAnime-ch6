@@ -44,6 +44,10 @@ class AuthFragment : Fragment() {
                     true
                 }
                 R.id.nav_list -> {
+                    setFragment(AnimeFragment())
+                    true
+                }
+                R.id.nav_favorite ->{
                     setFragment(FavoriteFragment())
                     true
                 }

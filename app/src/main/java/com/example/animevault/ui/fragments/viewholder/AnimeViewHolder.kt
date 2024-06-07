@@ -5,6 +5,7 @@ import coil.load
 import com.example.animevault.databinding.ItemAnimeNewBinding
 import com.example.animevault.ui.fragments.adapter.AnimeAdapterListener
 import com.example.domain.model.Anime
+import com.example.domain.model.AnimeHome
 
 class AnimeViewHolder (
     private val itemViewBinding: ItemAnimeNewBinding, private val animeAdapterListener: AnimeAdapterListener
@@ -16,15 +17,17 @@ class AnimeViewHolder (
 
         itemViewBinding.ivAnimeCover.load(data.image)
 
-        itemViewBinding.tvAnimeDesc.text = data.desc
+        itemViewBinding.tvAnimeDesc.text = data.synopsis
 
-        itemViewBinding.btnSearchAnime.setOnClickListener{
-            animeAdapterListener.onClickSearchButton(data)
-        }
+        itemViewBinding.tvTagYear.text = data.year.toString()
 
-        itemViewBinding.btnFavAnime.setOnClickListener{
-            animeAdapterListener.onClickFavButton(data)
-        }
+        itemViewBinding.tvTagEpisode.text = data.episode
+
+        itemViewBinding.tvRate.text = data.rate.toString()
+
+//        itemViewBinding.btnFavAnime.setOnClickListener{
+//            animeAdapterListener.onClickFavButton(data)
+//        }
     }
 
 

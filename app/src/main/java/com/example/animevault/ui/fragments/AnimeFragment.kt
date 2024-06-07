@@ -21,8 +21,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.animevault.R
 import com.example.animevault.databinding.FragmentAnimeBinding
 import com.example.animevault.ui.fragments.adapter.AnimeAdapter
+import com.example.animevault.ui.fragments.adapter.AnimeHomeAdapter
 import com.example.animevault.ui.fragments.adapter.AnimeAdapterListener
 import com.example.domain.model.Anime
+import com.example.domain.model.AnimeHome
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AnimeFragment : Fragment(), AnimeAdapterListener {
@@ -100,7 +102,7 @@ class AnimeFragment : Fragment(), AnimeAdapterListener {
         }
     }
 
-    override fun onClickFavButton(data: Anime) {
+    override fun onClickFavButton(data: AnimeHome) {
         viewModel.loadAnimeFromFavorite(data.id)
         viewModel.storeToFavorite(
             id = data.id,
@@ -111,11 +113,11 @@ class AnimeFragment : Fragment(), AnimeAdapterListener {
         findNavController().navigate(R.id.action_animeFragment_to_favoriteFragment)
     }
 
-    override fun onClickSearchButton(data: Anime) {
+    override fun onClickSearchButton(data: AnimeHome) {
         searchAnime(data)
     }
 
-    private fun searchAnime(data: Anime) {
+    private fun searchAnime(data: AnimeHome) {
         val intent = Intent(Intent.ACTION_VIEW).apply {
             setData(Uri.parse("https://www.google.com/search?q=${data.title}"))
         }

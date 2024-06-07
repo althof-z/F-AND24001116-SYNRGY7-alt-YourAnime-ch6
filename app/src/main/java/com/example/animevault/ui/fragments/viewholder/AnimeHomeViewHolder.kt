@@ -4,14 +4,14 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.animevault.databinding.ItemAnimeHomeBinding
 import com.example.animevault.ui.fragments.adapter.AnimeAdapterListener
-import com.example.domain.model.Anime
+import com.example.domain.model.AnimeHome
 
 class AnimeHomeViewHolder(
     private val itemViewBinding: ItemAnimeHomeBinding, private val animeAdapterListener: AnimeAdapterListener
 
 ): RecyclerView.ViewHolder(itemViewBinding.root) {
 
-    fun bindAnime(data: Anime){
+    fun bindAnime(data: AnimeHome){
         itemViewBinding.tvAnimeTitle.text = data.title
 
         itemViewBinding.ivAnimeCoverHome.load(data.image)

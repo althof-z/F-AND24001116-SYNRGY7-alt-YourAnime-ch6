@@ -10,75 +10,102 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="#CDDC39">
-
-        <com.google.android.material.imageview.ShapeableImageView
+        android:layout_height="wrap_content">
+        <ImageView
             android:id="@+id/iv_anime_cover"
             android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:background="@color/black"
+            android:layout_height="250dp"
+            android:background="@color/teal_200"
             android:scaleType="centerCrop"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:id="@+id/tv_anime_title"
-            android:layout_width="0sp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            tools:text="@tools:sample/lorem/random"
+            android:textSize="16sp"
             android:maxLines="2"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/iv_anime_cover"
+            android:ellipsize="end"
+            android:layout_margin="16dp"
+            app:layout_constraintStart_toEndOf="@id/iv_anime_cover"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@tools:sample/lorem/random" />
-
-        <ImageButton
-            android:id="@+id/btn_search_anime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="#EEEE00"
-            android:contentDescription="@string/btn_search"
-            android:src="@drawable/ic_search"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintStart_toEndOf="@+id/iv_anime_cover"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_fav_anime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="#EEEE00"
-            android:contentDescription="@string/btn_fav"
-            android:src="@drawable/ic_fav_border"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/guideline"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <com.google.android.material.textview.MaterialTextView
+            app:layout_constraintTop_toTopOf="@id/iv_anime_cover"/>
+        <TextView
             android:id="@+id/tv_anime_desc"
-            android:layout_width="0sp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:maxLines="7"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_anime_title"
-            app:layout_constraintStart_toStartOf="@+id/tv_anime_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_anime_title"
-            tools:text="@tools:sample/lorem" />
+            tools:text="@tools:sample/lorem/random"
+            android:ellipsize="end"
+            android:textSize="12sp"
+            android:maxLines="3"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintTop_toBottomOf="@id/tv_anime_title"
+            app:layout_constraintStart_toStartOf="@id/tv_anime_title"
+            app:layout_constraintEnd_toEndOf="@id/tv_anime_title" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
+        <TextView
+            android:id="@+id/tv_tag_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.69" />
+            android:layout_marginTop="16dp"
+            android:background="@drawable/border"
+            android:padding="6dp"
+            android:text="year"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_anime_desc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_anime_desc" />
+
+        <TextView
+            android:id="@+id/tv_tag_episode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textSize="12sp"
+            android:padding="6dp"
+            android:textStyle="bold"
+            android:text="episode"
+            android:background="@drawable/border"
+            app:layout_constraintStart_toEndOf="@+id/tv_tag_year"
+            app:layout_constraintTop_toTopOf="@+id/tv_tag_year" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_rate"
+            app:layout_constraintStart_toStartOf="@id/tv_anime_title"
+            app:layout_constraintTop_toTopOf="@+id/btn_fav_anime" />
+
+        <TextView
+            android:id="@+id/tv_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="rates"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+
+        <Button
+            android:id="@+id/btn_fav_anime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/btn_fav"
+            android:text="Add to Favorite"
+            android:textSize="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="TextSizeCheck" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

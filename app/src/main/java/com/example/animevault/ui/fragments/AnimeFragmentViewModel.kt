@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Anime
+import com.example.domain.model.AnimeHome
 import com.example.domain.repository.AnimeRepository
 import com.example.domain.repository.AuthRepository
 import kotlinx.coroutines.launch
@@ -27,7 +28,7 @@ class AnimeFragmentViewModel(
         viewModelScope.launch {
             try{
                 _loading.value = true
-                _animes.value = animeRepository.fetchData()
+                _animes.value = animeRepository.fetchDataPlus()
                 _loading.value = false
             }catch (throwable: Throwable){
                 _loading.value = false
@@ -46,13 +47,13 @@ class AnimeFragmentViewModel(
         desc: String
     ){
       viewModelScope.launch {
-          val anime = Anime(
+          val animeHome = AnimeHome(
               id = id,
               image = image,
               desc = desc,
               title = title,
           )
-          animeRepository.storeFavorite(anime)
+          animeRepository.storeFavorite(animeHome)
       }
     }
 
@@ -67,7 +68,7 @@ class AnimeFragmentViewModel(
     }
 
 
-    private val _animeLocal = MutableLiveData<Anime?>()
+    private val _animeLocal = MutableLiveData<AnimeHome?>()
     fun loadAnimeFromFavorite(id: Int){
         viewModelScope.launch {
             try {

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.model.Anime
+import com.example.domain.model.AnimeHome
 import com.example.domain.repository.AnimeRepository
 import com.example.domain.repository.AuthRepository
 import kotlinx.coroutines.launch
@@ -14,8 +14,8 @@ class FavoriteFragmentViewModel(
     private val authRepository: AuthRepository,
 ): ViewModel(){
 
-    private val _animes: MutableLiveData<List<Anime>> = MutableLiveData()
-    val animes: LiveData<List<Anime>> = _animes
+    private val _animes: MutableLiveData<List<AnimeHome>> = MutableLiveData()
+    val animes: LiveData<List<AnimeHome>> = _animes
 
     private val _error = MutableLiveData<Throwable>()
     val error: LiveData<Throwable> = _error
@@ -30,13 +30,13 @@ class FavoriteFragmentViewModel(
         }
     }
 
-    fun deleteAnimeFromFavorite(anime: Anime){
+    fun deleteAnimeFromFavorite(animeHome: AnimeHome){
         viewModelScope.launch {
-            animeRepository.deleteAnime(anime)
+            animeRepository.deleteAnime(animeHome)
         }
     }
 
-    private val _animeLocal = MutableLiveData<Anime?>()
+    private val _animeLocal = MutableLiveData<AnimeHome?>()
     fun loadAnimeFromFavorite(id: Int){
         viewModelScope.launch {
             try {

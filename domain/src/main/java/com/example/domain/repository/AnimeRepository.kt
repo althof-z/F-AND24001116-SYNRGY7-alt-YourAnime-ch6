@@ -1,16 +1,19 @@
 package com.example.domain.repository
 
 import com.example.domain.model.Anime
+import com.example.domain.model.AnimeHome
 
 interface AnimeRepository {
 
-    suspend fun fetchData(): List<Anime>
+    suspend fun fetchData(): List<AnimeHome>
 
-    suspend fun storeFavorite(anime: Anime)
+    suspend fun fetchDataPlus(): List<Anime>
 
-    suspend fun getAllAnime(): List<Anime>
+    suspend fun storeFavorite(animeHome: AnimeHome)
 
-    suspend fun deleteAnime(anime: Anime)
+    suspend fun getAllAnime(): List<AnimeHome>
 
-    suspend fun getMovieById(id: Int): Anime?
+    suspend fun deleteAnime(animeHome: AnimeHome)
+
+    suspend fun getMovieById(id: Int): AnimeHome?
 }

@@ -1,15 +1,15 @@
 package com.example.animevault.ui.fragments.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.domain.model.Anime
+import com.example.domain.model.AnimeHome
 
-class AnimeDiffUtil : DiffUtil.ItemCallback<Anime>() {
+class AnimeDiffUtil : DiffUtil.ItemCallback<AnimeHome>() {
 
-    override fun areItemsTheSame(oldItem: Anime, newItem: Anime): Boolean {
+    override fun areItemsTheSame(oldItem: AnimeHome, newItem: AnimeHome): Boolean {
         return oldItem.title == newItem.title
     }
 
-    override fun areContentsTheSame(oldItem: Anime, newItem: Anime): Boolean {
+    override fun areContentsTheSame(oldItem: AnimeHome, newItem: AnimeHome): Boolean {
         return oldItem.title == newItem.title
     }
 }

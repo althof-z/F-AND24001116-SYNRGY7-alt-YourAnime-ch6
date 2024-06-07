@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.model.Anime
+import com.example.domain.model.AnimeHome
 import com.example.domain.repository.AnimeRepository
 import com.example.domain.repository.AuthRepository
 import kotlinx.coroutines.launch
@@ -14,8 +14,8 @@ class HomeFragmentViewModel (
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
-    private val _animes: MutableLiveData<List<Anime>> = MutableLiveData()
-    val animes: LiveData<List<Anime>> = _animes
+    private val _animes: MutableLiveData<List<AnimeHome>> = MutableLiveData()
+    val animes: LiveData<List<AnimeHome>> = _animes
 
     private val _loading: MutableLiveData<Boolean> = MutableLiveData()
     val loading: LiveData<Boolean> = _loading
@@ -46,13 +46,13 @@ class HomeFragmentViewModel (
         desc: String
     ){
         viewModelScope.launch {
-            val anime = Anime(
+            val animeHome = AnimeHome(
                 id = id,
                 image = image,
                 desc = desc,
                 title = title,
             )
-            animeRepository.storeFavorite(anime)
+            animeRepository.storeFavorite(animeHome)
         }
     }
 
@@ -67,11 +67,11 @@ class HomeFragmentViewModel (
     }
 
 
-    private val _animeLocal = MutableLiveData<Anime?>()
+    private val _animeHomeLocal = MutableLiveData<AnimeHome?>()
     fun loadAnimeFromFavorite(id: Int){
         viewModelScope.launch {
             try {
-                _animeLocal.value = animeRepository.getMovieById(id)
+                _animeHomeLocal.value = animeRepository.getMovieById(id)
             } catch (throwable: Throwable){
                 _error.value = throwable
             }
