@@ -25,11 +25,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
@@ -41,19 +41,21 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.monitor)
     implementation(libs.androidx.junit.ktx)
-    androidTestImplementation(libs.junit)
     ksp(libs.androidx.room.compiler)
-
     implementation(libs.androidx.datastore.preferences)
 
-    implementation(libs.gson)
+    androidTestImplementation(libs.junit)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.androidx.core.testing)
 
+    implementation(libs.gson)
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
-
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
-
     debugImplementation(libs.library)
     releaseImplementation(libs.library.no.op)
 }
