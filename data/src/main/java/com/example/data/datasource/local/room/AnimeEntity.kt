@@ -13,6 +13,12 @@ data class AnimeEntity (
     val image: String,
     @ColumnInfo(name = "title")
     val title: String,
-    @ColumnInfo(name = "desc")
-    val desc: String
+    @ColumnInfo(name = "synopsis")
+    val synopsis: String,
+    @ColumnInfo(name = "year")
+    val year: Int,
+    @ColumnInfo(name = "episode")
+    val episode: String,
+    @ColumnInfo(name = "rate")
+    val rate: Double
 )

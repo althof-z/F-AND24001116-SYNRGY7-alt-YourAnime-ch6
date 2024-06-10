@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -37,7 +38,12 @@ class  FirstFragment : Fragment() {
 
         viewModel.checkLogin()
 
+        viewBinding.btnRegister.setOnClickListener{
+            Toast.makeText(context,"Register Coming Soon", Toast.LENGTH_SHORT).show()
+        }
+
         viewBinding.btnLogin.setOnClickListener {
+            Toast.makeText(context,"Email & Password = aku", Toast.LENGTH_SHORT).show()
             it.findNavController().navigate(R.id.action_firstFragment_to_loginFragment)
         }
     }

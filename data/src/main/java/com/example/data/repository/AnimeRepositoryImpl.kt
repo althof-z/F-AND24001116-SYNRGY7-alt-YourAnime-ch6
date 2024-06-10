@@ -2,6 +2,7 @@ package com.example.data.repository
 
 import com.example.data.datasource.AnimeLocalData
 import com.example.data.datasource.AnimeRemoteData
+import com.example.data.mapper.toAnime
 import com.example.data.mapper.toAnimeHome
 import com.example.data.mapper.toAnimeEntity
 import com.example.data.mapper.toAnimes
@@ -21,19 +22,19 @@ class AnimeRepositoryImpl(
         return remoteData.fetchDataPlus()
     }
 
-    override suspend fun storeFavorite(animeHome: AnimeHome) {
-        localData.insertAnime(animeHome.toAnimeEntity())
+    override suspend fun storeFavorite(anime: Anime) {
+        localData.insertAnime(anime.toAnimeEntity())
     }
 
-    override suspend fun deleteAnime(animeHome: AnimeHome) {
-        localData.deleteAnime(animeHome.toAnimeEntity())
+    override suspend fun deleteAnime(anime: Anime) {
+        localData.deleteAnime(anime.toAnimeEntity())
     }
 
-    override suspend fun getAllAnime(): List<AnimeHome> {
+    override suspend fun getAllAnime(): List<Anime> {
         return localData.selectAllAnimes().toAnimes()
     }
 
-    override suspend fun getMovieById(id: Int): AnimeHome? {
-        return localData.selectAnimeById(id)?.toAnimeHome()
+    override suspend fun getMovieById(id: Int): Anime? {
+        return localData.selectAnimeById(id)?.toAnime()
     }
 }

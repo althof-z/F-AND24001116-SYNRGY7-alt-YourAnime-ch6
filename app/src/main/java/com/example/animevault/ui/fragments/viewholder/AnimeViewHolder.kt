@@ -8,7 +8,9 @@ import com.example.domain.model.Anime
 import com.example.domain.model.AnimeHome
 
 class AnimeViewHolder (
-    private val itemViewBinding: ItemAnimeNewBinding, private val animeAdapterListener: AnimeAdapterListener
+    private val itemViewBinding: ItemAnimeNewBinding,
+    private val animeAdapterListener: AnimeAdapterListener,
+    private val fragmentType: FragmentType
 
 ): RecyclerView.ViewHolder(itemViewBinding.root) {
 
@@ -25,10 +27,20 @@ class AnimeViewHolder (
 
         itemViewBinding.tvRate.text = data.rate.toString()
 
-//        itemViewBinding.btnFavAnime.setOnClickListener{
-//            animeAdapterListener.onClickFavButton(data)
-//        }
+        itemViewBinding.btnFavAnime.text = when (fragmentType) {
+            FragmentType.FAVORITE -> "Remove From Favorite" // Text for FavoriteFragment
+            FragmentType.ANIME -> "Add to Favorite"    // Text for AnimeFragment
+        }
+
+        itemViewBinding.btnFavAnime.setOnClickListener{
+            animeAdapterListener.onClickFavButton(data)
+        }
     }
 
 
+}
+
+enum class FragmentType {
+    FAVORITE,
+    ANIME
 }

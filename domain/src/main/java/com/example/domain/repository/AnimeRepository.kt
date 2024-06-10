@@ -9,11 +9,11 @@ interface AnimeRepository {
 
     suspend fun fetchDataPlus(): List<Anime>
 
-    suspend fun storeFavorite(animeHome: AnimeHome)
+    suspend fun storeFavorite(anime: Anime)
 
-    suspend fun getAllAnime(): List<AnimeHome>
+    suspend fun getAllAnime(): List<Anime>
 
-    suspend fun deleteAnime(animeHome: AnimeHome)
+    suspend fun deleteAnime(anime: Anime)
 
-    suspend fun getMovieById(id: Int): AnimeHome?
+    suspend fun getMovieById(id: Int): Anime?
 }

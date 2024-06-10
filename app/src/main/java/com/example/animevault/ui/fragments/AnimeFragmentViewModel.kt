@@ -39,21 +39,26 @@ class AnimeFragmentViewModel(
 
     }
 
-
     fun storeToFavorite(
-        title: String,
-        image: String,
         id: Int,
-        desc: String
+        image: String,
+        title: String,
+        synopsis: String,
+        year: Int,
+        episode: String,
+        rate: Double
     ){
       viewModelScope.launch {
-          val animeHome = AnimeHome(
+          val anime = Anime(
               id = id,
               image = image,
-              desc = desc,
+              rate = rate,
+              episode = episode ,
+              year = year,
               title = title,
+              synopsis = synopsis,
           )
-          animeRepository.storeFavorite(animeHome)
+          animeRepository.storeFavorite(anime)
       }
     }
 
@@ -68,7 +73,7 @@ class AnimeFragmentViewModel(
     }
 
 
-    private val _animeLocal = MutableLiveData<AnimeHome?>()
+    private val _animeLocal = MutableLiveData<Anime?>()
     fun loadAnimeFromFavorite(id: Int){
         viewModelScope.launch {
             try {

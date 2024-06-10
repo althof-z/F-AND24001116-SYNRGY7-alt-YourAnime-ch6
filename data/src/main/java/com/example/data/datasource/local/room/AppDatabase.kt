@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
     entities = [
         AnimeEntity:: class
     ],
-    version = 2
+    version = 3,
 )
 abstract class AppDatabase: RoomDatabase(){
     companion object{

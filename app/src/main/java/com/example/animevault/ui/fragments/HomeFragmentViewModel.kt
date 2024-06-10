@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.model.Anime
 import com.example.domain.model.AnimeHome
 import com.example.domain.repository.AnimeRepository
 import com.example.domain.repository.AuthRepository
@@ -38,24 +39,6 @@ class HomeFragmentViewModel (
 
     }
 
-
-    fun storeToFavorite(
-        title: String,
-        image: String,
-        id: Int,
-        desc: String
-    ){
-        viewModelScope.launch {
-            val animeHome = AnimeHome(
-                id = id,
-                image = image,
-                desc = desc,
-                title = title,
-            )
-            animeRepository.storeFavorite(animeHome)
-        }
-    }
-
     fun logout() {
         viewModelScope.launch {
             try {
@@ -67,16 +50,16 @@ class HomeFragmentViewModel (
     }
 
 
-    private val _animeHomeLocal = MutableLiveData<AnimeHome?>()
-    fun loadAnimeFromFavorite(id: Int){
-        viewModelScope.launch {
-            try {
-                _animeHomeLocal.value = animeRepository.getMovieById(id)
-            } catch (throwable: Throwable){
-                _error.value = throwable
-            }
-        }
-    }
+//    private val _animeHomeLocal = MutableLiveData<Anime?>()
+//    fun loadAnimeFromFavorite(id: Int){
+//        viewModelScope.launch {
+//            try {
+//                _animeHomeLocal.value = animeRepository.getMovieById(id)
+//            } catch (throwable: Throwable){
+//                _error.value = throwable
+//            }
+//        }
+//    }
 
 
 }

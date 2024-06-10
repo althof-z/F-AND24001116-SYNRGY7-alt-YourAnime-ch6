@@ -29,7 +29,7 @@ val koinModule = module {
     single<AuthRepository> { AuthRepositoryImpl(authLocalData = get(), authRemoteData = get()) }
     single<AnimeRepository> { AnimeRepositoryImpl(remoteData = get(), localData = get()) }
     single<AnimeLocalData> { AnimeLocalDataImpl(animeDao = get())}
-    single<AppDatabase> { Room.databaseBuilder(context = get(), name = AppDatabase.DATABASE_NAME, klass = AppDatabase::class.java).build() }
+    single<AppDatabase> { Room.databaseBuilder(context = get(), name = AppDatabase.DATABASE_NAME, klass = AppDatabase::class.java).fallbackToDestructiveMigration().build() }
     single<AnimeDao> { (get() as AppDatabase).animeDao() }
     single <AnimeRemoteData> { AnimeRemoteDataImpl(jikanService = get()) }
     single<JikanService>  { provideJikanService(get()) }

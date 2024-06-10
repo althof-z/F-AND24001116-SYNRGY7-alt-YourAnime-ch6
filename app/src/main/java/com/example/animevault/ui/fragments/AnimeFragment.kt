@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -23,14 +24,15 @@ import com.example.animevault.databinding.FragmentAnimeBinding
 import com.example.animevault.ui.fragments.adapter.AnimeAdapter
 import com.example.animevault.ui.fragments.adapter.AnimeHomeAdapter
 import com.example.animevault.ui.fragments.adapter.AnimeAdapterListener
+import com.example.animevault.ui.fragments.viewholder.FragmentType
 import com.example.domain.model.Anime
 import com.example.domain.model.AnimeHome
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AnimeFragment : Fragment(), AnimeAdapterListener {
     private lateinit var binding: FragmentAnimeBinding
-    private val animeAdapter = AnimeAdapter(this)
-
+    private val animeAdapter = AnimeAdapter(this,  FragmentType.ANIME )
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val viewModel by viewModel<AnimeFragmentViewModel> ()
 
     override fun onCreateView(
@@ -45,6 +47,8 @@ class AnimeFragment : Fragment(), AnimeAdapterListener {
         super.onViewCreated(view, savedInstanceState)
 
         val menuHost: MenuHost = requireActivity()
+
+        sharedViewModel.setSelectedNavItemId(R.id.nav_list)
 
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -98,27 +102,34 @@ class AnimeFragment : Fragment(), AnimeAdapterListener {
         }
     }
 
-    override fun onClickFavButton(data: AnimeHome) {
+    private fun setFragment(fragment: Fragment) {
+        (parentFragment as? AuthFragment)?.setFragment(fragment)
+    }
+
+    override fun onClickFavButton(data: Anime) {
         viewModel.loadAnimeFromFavorite(data.id)
         viewModel.storeToFavorite(
             id = data.id,
             image = data.image,
             title = data.title,
-            desc = data.desc
+            synopsis = data.synopsis,
+            year = data.year,
+            episode = data.episode,
+            rate = data.rate
         )
-        findNavController().navigate(R.id.action_animeFragment_to_favoriteFragment)
+        setFragment(FavoriteFragment())
     }
 
-    override fun onClickSearchButton(data: AnimeHome) {
-        searchAnime(data)
-    }
-
-    private fun searchAnime(data: AnimeHome) {
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            setData(Uri.parse("https://www.google.com/search?q=${data.title}"))
-        }
-        startActivity(intent)
-    }
+//    override fun onClickSearchButton(data: AnimeHome) {
+//        searchAnime(data)
+//    }
+//
+//    private fun searchAnime(data: AnimeHome) {
+//        val intent = Intent(Intent.ACTION_VIEW).apply {
+//            setData(Uri.parse("https://www.google.com/search?q=${data.title}"))
+//        }
+//        startActivity(intent)
+//    }
 
 
 }

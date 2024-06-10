@@ -1,7 +1,5 @@
 package com.example.animevault.ui.fragments
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -13,6 +11,7 @@ import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -20,32 +19,43 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animevault.R
 import com.example.animevault.databinding.FragmentFavoriteBinding
-import com.example.animevault.ui.fragments.adapter.AnimeHomeAdapter
+import com.example.animevault.ui.fragments.adapter.AnimeAdapter
 import com.example.animevault.ui.fragments.adapter.AnimeAdapterListener
-import com.example.domain.model.AnimeHome
+import com.example.animevault.ui.fragments.viewholder.FragmentType
+import com.example.domain.model.Anime
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class FavoriteFragment : Fragment(), AnimeAdapterListener {
 
-    private lateinit var binding: FragmentFavoriteBinding
-    private val animeAdapter = AnimeHomeAdapter(this)
+    private var _binding: FragmentFavoriteBinding? = null
+    private val binding get() = _binding!!
+    private val animeAdapter = AnimeAdapter(this,  FragmentType.FAVORITE)
+    private val viewModel by viewModel<FavoriteFragmentViewModel>()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
-    private val viewModel by viewModel<FavoriteFragmentViewModel> ()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        binding = FragmentFavoriteBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupMenu()
+        setupAnimeRV()
 
+        // Update BottomNavigationView selected item
+        sharedViewModel.setSelectedNavItemId(R.id.nav_favorite)
+
+        viewModel.error.observe(viewLifecycleOwner) { error ->
+            Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setupMenu() {
         val menuHost: MenuHost = requireActivity()
-
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.menu, menu)
@@ -58,7 +68,7 @@ class FavoriteFragment : Fragment(), AnimeAdapterListener {
                         activity?.finish()
                         true
                     }
-                    R.id.action_account ->{
+                    R.id.action_account -> {
                         findNavController().navigate(R.id.action_authFragment_to_profileFragment)
                         true
                     }
@@ -66,16 +76,9 @@ class FavoriteFragment : Fragment(), AnimeAdapterListener {
                 }
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
-
-        viewModel.error.observe(viewLifecycleOwner){error ->
-            Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
-        }
-
-        setupAnimeRV()
-
     }
 
-    private fun setupAnimeRV(){
+    private fun setupAnimeRV() {
         binding.rvAnimeList.apply {
             adapter = animeAdapter
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -84,27 +87,19 @@ class FavoriteFragment : Fragment(), AnimeAdapterListener {
 
         viewModel.getMovieFromLocal()
 
-        viewModel.animes.observe(viewLifecycleOwner){ animes ->
+        viewModel.animes.observe(viewLifecycleOwner) { animes ->
             animeAdapter.submitList(animes)
         }
     }
 
-    override fun onClickFavButton(data: AnimeHome) {
+    override fun onClickFavButton(data: Anime) {
         viewModel.loadAnimeFromFavorite(data.id)
         viewModel.deleteAnimeFromFavorite(data)
         viewModel.getMovieFromLocal()
     }
 
-    override fun onClickSearchButton(data: AnimeHome) {
-        searchAnime(data)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
-
-    private fun searchAnime(data: AnimeHome) {
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            setData(Uri.parse("https://www.google.com/search?q=${data.title}"))
-        }
-        startActivity(intent)
-    }
-
-
 }

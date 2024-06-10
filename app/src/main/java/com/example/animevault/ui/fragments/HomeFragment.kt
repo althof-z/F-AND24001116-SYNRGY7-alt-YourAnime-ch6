@@ -21,6 +21,7 @@ import com.example.animevault.R
 import com.example.animevault.databinding.FragmentHomeBinding
 import com.example.animevault.ui.fragments.adapter.AnimeHomeAdapter
 import com.example.animevault.ui.fragments.adapter.AnimeAdapterListener
+import com.example.domain.model.Anime
 import com.example.domain.model.AnimeHome
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -67,6 +68,10 @@ class HomeFragment : Fragment(), AnimeAdapterListener {
             Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
         }
 
+        binding.btnSeeAll.setOnClickListener {
+            setFragment(AnimeFragment())
+        }
+
         setupAnimeRV()
 
         viewModel.retrieveAvailableAnimes()
@@ -84,6 +89,11 @@ class HomeFragment : Fragment(), AnimeAdapterListener {
         }
     }
 
+    private fun setFragment(fragment: Fragment) {
+        (parentFragment as? AuthFragment)?.setFragment(AnimeFragment())
+    }
+
+
     private fun setupAnimeRV(){
         binding.rvAnimeHome.apply {
             adapter = animeHomeAdapter
@@ -92,12 +102,7 @@ class HomeFragment : Fragment(), AnimeAdapterListener {
         }
     }
 
-    override fun onClickFavButton(data: AnimeHome) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onClickSearchButton(data: AnimeHome) {
-        TODO("Not yet implemented")
+    override fun onClickFavButton(data: Anime) {
     }
 
 }

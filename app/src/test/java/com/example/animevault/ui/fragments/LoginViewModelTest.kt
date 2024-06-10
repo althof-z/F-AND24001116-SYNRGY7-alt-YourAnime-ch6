@@ -12,7 +12,6 @@ import org.junit.Test
 import org.junit.rules.TestRule
 import org.mockito.kotlin.argumentCaptor
 import org.mockito.kotlin.mock
-import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
@@ -62,7 +61,6 @@ class LoginViewModelTest {
         val username = "username"
         val password = "password"
 
-        val loadingLiveData = viewModel.loading
         val successLiveData = viewModel.success
         val errorLiveData = viewModel.error
 
