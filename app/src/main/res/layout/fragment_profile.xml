@@ -13,6 +13,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/border_textview"
         android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="@+id/iv_Image"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="@+id/iv_Image"

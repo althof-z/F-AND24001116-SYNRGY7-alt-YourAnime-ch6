@@ -8,7 +8,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.animevault.R
 import com.example.animevault.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity()  {
 
     private val viewBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 

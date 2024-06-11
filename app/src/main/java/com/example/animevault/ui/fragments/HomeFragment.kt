@@ -22,6 +22,7 @@ import com.example.animevault.databinding.FragmentHomeBinding
 import com.example.animevault.ui.fragments.adapter.AnimeHomeAdapter
 import com.example.animevault.ui.fragments.adapter.AnimeAdapterListener
 import com.example.domain.model.Anime
+import com.example.domain.model.AnimeHome
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), AnimeAdapterListener {
@@ -89,7 +90,7 @@ class HomeFragment : Fragment(), AnimeAdapterListener {
     }
 
     private fun setFragment(fragment: Fragment) {
-        (parentFragment as? AuthFragment)?.setFragment(fragment)
+        (parentFragment as? AuthFragment)?.setFragment(AnimeFragment())
     }
 
 

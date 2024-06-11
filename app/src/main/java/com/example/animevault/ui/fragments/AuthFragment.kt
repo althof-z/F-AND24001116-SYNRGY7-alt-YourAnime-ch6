@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.animevault.R
 import com.example.animevault.databinding.FragmentAuthBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class AuthFragment : Fragment() {
     private var _binding: FragmentAuthBinding? = null

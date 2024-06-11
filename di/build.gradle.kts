@@ -16,19 +16,8 @@ android {
     }
 
     buildTypes {
-        debug {
-            isMinifyEnabled = false
-
-        }
-        create("QA") {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -57,8 +46,8 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.monitor)
     implementation(libs.androidx.junit.ktx)
-    androidTestImplementation(libs.junit)
-    androidTestImplementation(libs.junit)
+    androidTestImplementation("junit:junit:4.12")
+    androidTestImplementation("junit:junit:4.12")
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
 }

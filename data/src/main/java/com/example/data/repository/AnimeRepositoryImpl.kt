@@ -3,6 +3,7 @@ package com.example.data.repository
 import com.example.data.datasource.AnimeLocalData
 import com.example.data.datasource.AnimeRemoteData
 import com.example.data.mapper.toAnime
+import com.example.data.mapper.toAnimeHome
 import com.example.data.mapper.toAnimeEntity
 import com.example.data.mapper.toAnimes
 import com.example.domain.model.Anime
