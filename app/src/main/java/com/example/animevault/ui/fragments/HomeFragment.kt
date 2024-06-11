@@ -1,7 +1,6 @@
 package com.example.animevault.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -11,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -19,8 +19,8 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.animevault.R
 import com.example.animevault.databinding.FragmentHomeBinding
-import com.example.animevault.ui.fragments.adapter.AnimeHomeAdapter
 import com.example.animevault.ui.fragments.adapter.AnimeAdapterListener
+import com.example.animevault.ui.fragments.adapter.AnimeHomeAdapter
 import com.example.domain.model.Anime
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

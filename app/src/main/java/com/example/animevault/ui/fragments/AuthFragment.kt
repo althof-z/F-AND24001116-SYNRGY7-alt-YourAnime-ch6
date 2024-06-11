@@ -35,7 +35,7 @@ class AuthFragment : Fragment() {
         }
     }
 
-    fun setBottomNavSelectedItem(itemId: Int) {
+    fun  setBottomNavSelectedItem(itemId: Int) {
         binding.bottomNav.selectedItemId = itemId
     }
 

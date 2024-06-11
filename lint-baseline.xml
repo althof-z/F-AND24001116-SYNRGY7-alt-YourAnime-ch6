@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Change the severity of hardcoded strings to "error" -->
+    <issue id="HardcodedText" severity="error" />
+
+    <!-- Change the severity of missing content description to "warning" -->
+    <issue id="ContentDescription" severity="warning" />
+
+    <!-- Change the severity of unused resources to "error" -->
+    <issue id="UnusedResources" severity="error" />
+
+    <!-- Change the severity of missing translations to "error" -->
+    <issue id="MissingTranslation" severity="error" />
+
+    <!-- Change the severity of deprecated API usage to "warning" -->
+    <issue id="NewApi" severity="warning" />
+
+    <!-- Change the severity of accessibility issues to "error" -->
+    <issue id="Accessibility" severity="error" />
+
+    <!-- Change the severity of using deprecated attributes to "warning" -->
+    <issue id="Deprecated" severity="warning" />
+
+    <!-- Change the severity of hardcoded dimensions to "error" -->
+    <issue id="HardcodedDimens" severity="error" />
+
+    <!-- Change the severity of using drawables without bounds to "warning" -->
+    <issue id="IconMissingDensityFolder" severity="warning" />
+
+    <!-- Change the severity of network on main thread to "error" -->
+    <issue id="NetworkOnMainThread" severity="error" />
+</lint>
