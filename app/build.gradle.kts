@@ -21,12 +21,47 @@ android {
     }
 
     buildTypes {
-        release {
+        debug{
             isMinifyEnabled = false
+            isDebuggable = true
+            applicationIdSuffix = ".dev"
+            buildConfigField("String", "APP_HOME_NAME", "\"AnimeVault: Debug\"")
+        }
+        create("QA"){
+            isMinifyEnabled = true
+            isDebuggable = true
+            isShrinkResources = true
+            applicationIdSuffix = ".qa"
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "APP_HOME_NAME", "\"AnimeVault: QA Testing\"")
+        }
+        release {
+            isMinifyEnabled = true
+            isDebuggable = false
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            buildConfigField("String", "APP_HOME_NAME", "\"AnimeVault\"")
+        }
+    }
+
+    flavorDimensions += "version"
+    productFlavors {
+        create("demo"){
+            dimension = "version"
+            applicationIdSuffix = ".demo"
+        }
+        create("free") {
+            dimension = "version"
+            applicationIdSuffix = ".free"
+        }
+        create("pro") {
+            dimension = "version"
         }
     }
     compileOptions {
@@ -38,6 +73,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     lint {

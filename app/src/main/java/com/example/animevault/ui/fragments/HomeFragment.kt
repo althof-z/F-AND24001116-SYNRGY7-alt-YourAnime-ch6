@@ -90,7 +90,7 @@ class HomeFragment : Fragment(), AnimeAdapterListener {
     }
 
     private fun setFragment(fragment: Fragment) {
-        (parentFragment as? AuthFragment)?.setFragment(AnimeFragment())
+        (parentFragment as? AuthFragment)?.setFragment(fragment)
     }
 
 

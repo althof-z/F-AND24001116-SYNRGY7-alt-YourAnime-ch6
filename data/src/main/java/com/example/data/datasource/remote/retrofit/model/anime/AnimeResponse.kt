@@ -3,7 +3,6 @@ package com.example.data.datasource.remote.retrofit.model.anime
 import com.google.gson.annotations.SerializedName
 
 data class AnimeResponse(
-    val aired: Aired,
     val airing: Boolean,
     val approved: Boolean,
     val background: String,

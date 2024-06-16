@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.example.animevault.BuildConfig
 import com.example.animevault.R
 import com.example.animevault.databinding.FragmentFirstBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -37,6 +38,8 @@ class  FirstFragment : Fragment() {
         }
 
         viewModel.checkLogin()
+
+        viewBinding.tvTitle.text = BuildConfig.APP_HOME_NAME
 
         viewBinding.btnRegister.setOnClickListener{
             Toast.makeText(context,"Register Coming Soon", Toast.LENGTH_SHORT).show()
