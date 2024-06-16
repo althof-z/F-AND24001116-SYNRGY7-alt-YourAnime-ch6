@@ -10,28 +10,28 @@ import kotlinx.coroutines.flow.map
 
 class AuthLocalDataImpl(
     private val dataStore: DataStore<Preferences>,
-) : com.example.data.datasource.AuthLocalData {
+) : AuthLocalData {
 
     companion object {
         const val KEY_TOKEN = "TOKEN"
-        private val AUTH_TOKEN_KEY = stringPreferencesKey(com.example.data.datasource.local.AuthLocalDataImpl.Companion.KEY_TOKEN)
+        private val AUTH_TOKEN_KEY = stringPreferencesKey(KEY_TOKEN)
     }
 
     override suspend fun saveToken(token: String) {
         dataStore.edit { preferences ->
-            preferences[com.example.data.datasource.local.AuthLocalDataImpl.Companion.AUTH_TOKEN_KEY] = token
+            preferences[AUTH_TOKEN_KEY] = token
         }
     }
 
     override suspend fun loadToken(): String? {
         return dataStore.data.map { preferences ->
-            preferences[com.example.data.datasource.local.AuthLocalDataImpl.Companion.AUTH_TOKEN_KEY]
+            preferences[AUTH_TOKEN_KEY]
         }.firstOrNull()
     }
 
     override suspend fun clearToken() {
         dataStore.edit { preferences ->
-            preferences[com.example.data.datasource.local.AuthLocalDataImpl.Companion.AUTH_TOKEN_KEY] = ""
+            preferences[AUTH_TOKEN_KEY] = ""
         }
     }
 }

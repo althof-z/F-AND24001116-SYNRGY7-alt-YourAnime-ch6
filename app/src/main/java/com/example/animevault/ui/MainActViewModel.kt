@@ -5,6 +5,4 @@ import com.example.domain.repository.AuthRepository
 
 class MainActViewModel(
     private val authRepository: AuthRepository
-): ViewModel() {
-
-}
+): ViewModel()
